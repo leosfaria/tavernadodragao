@@ -3,18 +3,13 @@ package br.com.tavernadodragao.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.tavernadodragao.dao.UserDao;
-import br.com.tavernadodragao.error.ErrorType;
-import br.com.tavernadodragao.error.LoginError;
 import br.com.tavernadodragao.model.User;
 
 @Controller
@@ -76,7 +71,6 @@ public class UserController {
 			}
 		}
 
-//		userDao.sessionClose();
 		userDao.save(user);
 		
 		request.getSession().setAttribute("logged", user);
