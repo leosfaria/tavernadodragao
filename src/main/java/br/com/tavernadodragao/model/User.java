@@ -1,14 +1,13 @@
 package br.com.tavernadodragao.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
@@ -39,9 +38,16 @@ public class User {
 	@NotBlank(message="Email deve ser um email válido")
 	private String email;
 
-	@ManyToMany(cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinTable(name="User_Friends")
-	private Collection<User> friends;
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_Friends", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Friend_ID")})
+	private List<User> friends = new ArrayList<User>();
+
+	@ManyToMany(mappedBy="friends")
+	private List<User> users;
+	
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_Campaign", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Campaign_ID")})
+	private List<Campaign> campaigns;
 	
 	public Long getId() {
 		return id;
@@ -78,5 +84,17 @@ public class User {
 	}
 	public void setFriends(List<User> friends) {
 		this.friends = friends;
+	}
+	public List<User> getUsers() {
+		return users;
+	}
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+	public List<Campaign> getCampaigns() {
+		return campaigns;
+	}
+	public void setCampaigns(List<Campaign> campaigns) {
+		this.campaigns = campaigns;
 	}
 }

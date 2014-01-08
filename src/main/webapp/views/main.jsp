@@ -45,16 +45,39 @@
 					<li><a href="#">Vampire ficha</a></li>
 					<li><a href="#">Upload ficha</a></li>
 					<br>
-					<li><a href="/table">Criar uma mesa</a></li>
+					<li><a href="/campaign">Criar uma Campanha</a></li>
 				</ul>
 			</td>
 			<td></td>
 			<td valign="top">Recent Activity</td>
 			<td></td>
 			<td align="center" valign="top">
-			<c:forEach var="friend" items="${logged.friends}">
+			<c:forEach var="friend" items="${friends}">
 				<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
 				<h3><c:out value="${ friend.username }" /></h3>
+			</c:forEach>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td>
+				<h2 style="padding: 0px 0px 0px 200px">
+					<u>Campaigns</u>
+				</h2>
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td align="center" valign="top">
+			<c:forEach var="campaign" items="${campaigns}">
+				<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1">
+				<h3><c:out value="${ campaign.name }" /></h3>
 			</c:forEach>
 			</td>
 		</tr>
@@ -69,7 +92,7 @@
 				</td>
 				<td>
 					<c:set var="contains" value="false" />
-					<c:forEach var="friend" items="${logged.friends}">
+					<c:forEach var="friend" items="${friends}">
 						<c:if test="${friend.id eq user.id }">
 							<c:set var="contains" value="true" />
 						</c:if>

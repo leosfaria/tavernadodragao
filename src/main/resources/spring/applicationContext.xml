@@ -40,16 +40,24 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 		</property>
 	</bean>
 	
+	<!-- Configs -->
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
+
+	<!-- Daos -->
+	<bean id="userDao" class="br.com.tavernadodragao.dao.UserDao" autowire="byType" />
+	<bean id="campaignDao" class="br.com.tavernadodragao.dao.CampaignDao" autowire="byType" />
+	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<util:properties id="hibernateProperties">
 		<prop key="hibernate.dialect">${database.dialect}</prop>
-		<prop key="hibernate.showsql">true</prop>
+		<prop key="hibernate.show_sql">true</prop>
+		<prop key="hibernate.format_sql">true</prop>
 		<prop key="hibernate.cache.use_query_cache">false</prop>
 		<prop key="hibernate.cache.use_second_level_cache">false</prop>
-		<prop key="hibernate.hbm2ddl.auto">update</prop>
+		<prop key="hibernate.hbm2ddl.auto">create</prop>
 	</util:properties>
 	
 </beans>

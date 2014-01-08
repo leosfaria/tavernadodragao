@@ -3,6 +3,7 @@ package br.com.tavernadodragao.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.FlushMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,19 @@ public class AbstractDao<T> {
 
 	public T save(T clazz) {
 		session().saveOrUpdate(clazz);
+		session().flush();
 		return clazz;
 	}
 
 	protected Session session() {
 		Session session = sessionFactory.getCurrentSession();
+		session.setFlushMode(FlushMode.MANUAL);
 		return session;
 	}
 
 	public T update(T clazz) {
 		session().merge(clazz);
+		session().flush();
 		return clazz;
 	}
 
@@ -48,7 +52,7 @@ public class AbstractDao<T> {
 	}
 
 	@SuppressWarnings("rawtypes")
-	@Transactional(propagation=Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List list() {
 		session().clear();
 		Criteria crit = session().createCriteria(clazz);

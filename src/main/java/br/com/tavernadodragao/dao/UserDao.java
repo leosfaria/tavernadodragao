@@ -23,6 +23,16 @@ public class UserDao extends AbstractDao<User> {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
+	public User save(User user) {
+		return super.save(user);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public User update(User user) {
+		return super.update(user);
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
 	public User findUserById(Long id) {
 		Criteria crit = session().createCriteria(User.class);
 

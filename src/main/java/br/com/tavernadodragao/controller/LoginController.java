@@ -3,27 +3,22 @@ package br.com.tavernadodragao.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.tavernadodragao.dao.UserDao;
 import br.com.tavernadodragao.error.ErrorType;
 import br.com.tavernadodragao.error.LoginError;
 import br.com.tavernadodragao.model.User;
 
 @Controller
-public class LoginController {
-
-	@Autowired
-	private UserDao userDao;
+public class LoginController extends AbstractController {
 	
 	@RequestMapping("/")
 	public String login(HttpServletRequest request, Model model) {
-		if (request.getSession().getAttribute("logged") != null)
+		if (getUserFromSession(request.getSession()) != null)
 			return "redirect:main";
 		
 		model.addAttribute("user", new User());
@@ -51,10 +46,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping("main")
-	public String loggedPage() {
+	public String loggedPage(Model model,HttpServletRequest request) {
+		User user = getUserFromSession(request.getSession());
+	
+		model.addAttribute("friends", getFriendsFromUser(user));
+		model.addAttribute("campaigns", getCampaignsFromUser(user));
+		
 		return "main";
 	}
-	
+
 	@RequestMapping("logout")
 	public String logout(HttpServletRequest request) {
 		request.getSession().invalidate();
