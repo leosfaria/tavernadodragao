@@ -52,10 +52,6 @@
 			</td>
 			<td></td>
 			<td valign="top"><b>Recent Activity</b> 
-				<c:forEach var="activity" items="${activities}">
-					<p><fmt:formatDate pattern="dd/MM/yyyy - HH:mm" value="${activity.date}" /></p>
-					<p>-   <c:out value="${ activity.message }" /></p>
-				</c:forEach>
 			</td>
 			<td></td>
 			<td align="center" valign="top">
@@ -130,6 +126,17 @@
 				</td>
 			</tr>
 		</c:forEach>
+		<tr>
+			<td></td>
+			<td></td>
+			<td><c:forEach var="activity" items="${activities}">
+					<p><fmt:formatDate pattern="dd/MM/yyyy - HH:mm" value="${activity.date}" /></p>
+					<p>-   <c:out value="${ activity.message }" /></p>
+				</c:forEach></td>
+			<td></td>
+			<td>
+			</td>
+		</tr>
 	</table>
 </body>
 </html>

@@ -3,6 +3,7 @@ package br.com.tavernadodragao.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -33,6 +34,8 @@ public class ActivityDao extends AbstractDao<Activity> {
 		Criteria crit = session().createCriteria(Activity.class);
 
 		crit.add(Restrictions.eq("userId", user.getId()));
+		crit.addOrder(Order.desc("date"));
+		
 		return (List<Activity>) crit.list();
 	}
 

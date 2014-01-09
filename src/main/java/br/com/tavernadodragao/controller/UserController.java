@@ -84,6 +84,20 @@ public class UserController extends AbstractController {
 			friend.getFriends().add(user);
 			
 			userDao.save(friend);
+			
+			Activity activity = new Activity();
+			Activity activityFriend = new Activity();
+			
+			activity.setUserId(user.getId());
+			activity.setMessage("Você e " + friend.getUsername() + " agora são amigos!");
+			activity.setDate(new Date());
+			
+			activityFriend.setUserId(friendId);
+			activityFriend.setMessage(user.getUsername() + " aprovou sua solicitação de amizade!");
+			activityFriend.setDate(new Date());
+			
+			activityDao.save(activity);
+			activityDao.save(activityFriend);
 		}
 
 		userDao.save(user);
