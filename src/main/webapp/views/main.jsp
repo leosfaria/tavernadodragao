@@ -30,7 +30,8 @@
 			</form>
 			<td style="width: 500px">
 				<h2 style="padding: 0px 0px 0px 200px">
-					<u>Party</u>
+					<u>Party</u>  
+					<c:out value="${ friendsRequestsCount }" />
 				</h2>
 			</td>
 		</tr>
@@ -56,6 +57,14 @@
 				<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
 				<h3><c:out value="${ friend.username }" /></h3>
 			</c:forEach>
+			<form id="acceptFriend" action="acceptFriend" method="post">
+				<c:forEach var="friendRequest" items="${friendsRequests}">
+					<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+					<h3><c:out value="${ friendRequest.username }" /></h3>
+					<input type="hidden" name="accept_friend_id" value="${friendRequest.id}" />
+					<input type="submit" value="Add" />	
+				</c:forEach>
+			</form>
 			</td>
 		</tr>
 		<tr>

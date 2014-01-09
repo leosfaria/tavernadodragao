@@ -47,10 +47,15 @@ public class LoginController extends AbstractController {
 	
 	@RequestMapping("main")
 	public String loggedPage(Model model,HttpServletRequest request) {
-		User user = getUserFromSession(request.getSession());
+		User user = getLoggedUser(request.getSession());
 	
 		model.addAttribute("friends", getFriendsFromUser(user));
 		model.addAttribute("campaigns", getCampaignsFromUser(user));
+		
+		if(user.getFriendsRequests().size() > 0) {
+			model.addAttribute("friendsRequestsCount", user.getFriendsRequests().size());
+			model.addAttribute("friendsRequests", user.getFriendsRequests());
+		}
 		
 		return "main";
 	}

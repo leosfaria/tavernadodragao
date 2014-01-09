@@ -43,9 +43,35 @@ public class UserController extends AbstractController {
 		User user = getLoggedUser(request.getSession());
 		user.setConfirmPassword(user.getPassword());
 
+		friend.getFriendsRequests().add(user);
+		
+		userDao.save(friend);
+
+		request.getSession().setAttribute("logged", user);
+
+		return "redirect:main";
+	}
+	
+	@RequestMapping("acceptFriend")
+	public String acceptFriend(HttpServletRequest request, Model model) {
+		if (request.getParameter("accept_friend_id") == null)
+			return "redirect:main";
+
+		Long friendId = Long.decode(request.getParameter("accept_friend_id"));
+
+		User friend = userDao.findUserById(friendId);
+		friend.setConfirmPassword(friend.getPassword());
+
+		User user = getLoggedUser(request.getSession());
+		user.setConfirmPassword(user.getPassword());
+
+		user.getFriendsRequests().remove(friend);
 		user.getFriends().add(friend);
 
+		friend.getFriends().add(user);
+		
 		userDao.save(user);
+		userDao.save(friend);
 
 		request.getSession().setAttribute("logged", user);
 

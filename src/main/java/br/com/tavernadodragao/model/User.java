@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
@@ -44,6 +45,13 @@ public class User {
 
 	@ManyToMany(mappedBy="friends")
 	private List<User> users;
+	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_Requests", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Friend_ID")})
+	private List<User> friendsRequests = new ArrayList<User>();
+
+	@OneToMany(mappedBy="friendsRequests")
+	private List<User> usersRequests;
 	
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="User_Campaign", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Campaign_ID")})
@@ -96,5 +104,17 @@ public class User {
 	}
 	public void setCampaigns(List<Campaign> campaigns) {
 		this.campaigns = campaigns;
+	}
+	public List<User> getFriendsRequests() {
+		return friendsRequests;
+	}
+	public void setFriendsRequests(List<User> friendsRequests) {
+		this.friendsRequests = friendsRequests;
+	}
+	public List<User> getUsersRequests() {
+		return usersRequests;
+	}
+	public void setUsersRequests(List<User> usersRequests) {
+		this.usersRequests = usersRequests;
 	}
 }
