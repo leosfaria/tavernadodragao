@@ -1,5 +1,6 @@
 package br.com.tavernadodragao.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,5 +41,15 @@ public abstract class AbstractController {
 	
 	protected List<Activity> getActivitiesFromUser(User user) {
 		return activityDao.findActivitiesFromUser(user);
+	}
+	
+	protected void createNewActivity(Long userId, String message) {
+		Activity activity = new Activity();
+		
+		activity.setUserId(userId);
+		activity.setMessage(message);
+		activity.setDate(new Date());
+		
+		activityDao.save(activity);
 	}
 }

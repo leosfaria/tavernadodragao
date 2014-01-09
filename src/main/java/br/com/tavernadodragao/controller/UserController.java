@@ -1,7 +1,5 @@
 package br.com.tavernadodragao.controller;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.tavernadodragao.model.Activity;
 import br.com.tavernadodragao.model.User;
 
 @Controller
@@ -50,13 +47,7 @@ public class UserController extends AbstractController {
 		
 		userDao.save(friend);
 		
-		Activity activity = new Activity();
-		
-		activity.setUserId(user.getId());
-		activity.setMessage("Você adicionou " + friend.getUsername() + " a sua lista de amigos. Request pending...");
-		activity.setDate(new Date());
-		
-		activityDao.save(activity);
+		createNewActivity(user.getId(), "Você adicionou " + friend.getUsername() + " a sua lista de amigos. Request pending...");
 		
 		request.getSession().setAttribute("logged", user);
 
@@ -85,19 +76,8 @@ public class UserController extends AbstractController {
 			
 			userDao.save(friend);
 			
-			Activity activity = new Activity();
-			Activity activityFriend = new Activity();
-			
-			activity.setUserId(user.getId());
-			activity.setMessage("Você e " + friend.getUsername() + " agora são amigos!");
-			activity.setDate(new Date());
-			
-			activityFriend.setUserId(friendId);
-			activityFriend.setMessage(user.getUsername() + " aprovou sua solicitação de amizade!");
-			activityFriend.setDate(new Date());
-			
-			activityDao.save(activity);
-			activityDao.save(activityFriend);
+			createNewActivity(user.getId(), "Você e " + friend.getUsername() + " agora são amigos!");
+			createNewActivity(friendId, user.getUsername() + " aprovou sua solicitação de amizade!");
 		}
 
 		userDao.save(user);

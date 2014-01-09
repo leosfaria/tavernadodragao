@@ -38,12 +38,12 @@ public class Campaign {
 		this.name = name;
 	}
 
-	public List<User> getUsers() {
+	public List<User> getPlayers() {
 		return players;
 	}
 
-	public void setUsers(List<User> users) {
-		this.players = users;
+	public void setPlayers(List<User> players) {
+		this.players = players;
 	}
 
 	public Long getMaster() {

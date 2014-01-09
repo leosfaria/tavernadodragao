@@ -54,12 +54,23 @@ public class CampaignController extends AbstractController {
 							userList.add(friend);
 					}
 					
-					campaign.setUsers(userList);
+					campaign.setPlayers(userList);
 					
 					user.getCampaigns().add(campaign);
 					
 					campaignDao.save(campaign);
 					userDao.save(user);
+					
+					for (User friend : userList) {
+						friend.getCampaigns().add(campaign);
+						friend.setConfirmPassword(friend.getPassword());
+						
+						userDao.save(friend);
+						
+						createNewActivity(friend.getId(), user.getUsername() + " criou a campanha " + campaign.getName() + " incluindo você!");
+					}
+					
+					createNewActivity(user.getId(), "Você criou uma nova campanha " + campaign.getName() + "!");
 					
 					return "redirect:main";
 				}
