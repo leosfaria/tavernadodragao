@@ -35,13 +35,13 @@ public class CampaignController extends AbstractController {
 	
 	@RequestMapping("createCampaign")
 	public String createCampaign(HttpServletRequest request, Model model, @Valid @ModelAttribute Campaign campaign, BindingResult result) {
+
+		User user = getLoggedUser(request.getSession());
+		user.setConfirmPassword(user.getPassword());
 		
 		if (!result.hasErrors())
 		{		
 			CampaignError error;
-			
-			User user = getLoggedUser(request.getSession());
-			user.setConfirmPassword(user.getPassword());
 			
 			try {
 				if(!campaignDao.existsCampaign(campaign, user)) {
@@ -73,6 +73,8 @@ public class CampaignController extends AbstractController {
 				e.printStackTrace();
 			}
 		}
+		
+		model.addAttribute("friends", getFriendsFromUser(user));
 		
 		return "campaign";
 	}

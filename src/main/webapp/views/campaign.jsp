@@ -14,7 +14,7 @@
 	<br>
 	<br>
 	<table>
-		<form:form id="createCampaign" action="createCampaign" method="post">
+		<form:form id="createCampaign" action="createCampaign" method="post" commandName="campaign">
 			<tr>
 				<td style="padding: 0px 0px 0px 20px;"><img src="../resources/css/images/yourImageDefault.jpg"
 					height="100" width="100" border="1"></td>
