@@ -57,6 +57,8 @@ public class LoginController extends AbstractController {
 			model.addAttribute("friendsRequests", user.getFriendsRequests());
 		}
 		
+		model.addAttribute("activities", getActivitiesFromUser(user));
+		
 		return "main";
 	}
 

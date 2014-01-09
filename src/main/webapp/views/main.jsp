@@ -1,5 +1,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -50,7 +51,12 @@
 				</ul>
 			</td>
 			<td></td>
-			<td valign="top">Recent Activity</td>
+			<td valign="top"><b>Recent Activity</b> 
+				<c:forEach var="activity" items="${activities}">
+					<p><fmt:formatDate pattern="dd/MM/yyyy - HH:mm" value="${activity.date}" /></p>
+					<p>-   <c:out value="${ activity.message }" /></p>
+				</c:forEach>
+			</td>
 			<td></td>
 			<td align="center" valign="top">
 			<c:forEach var="friend" items="${friends}">

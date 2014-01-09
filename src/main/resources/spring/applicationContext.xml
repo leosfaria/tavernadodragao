@@ -46,6 +46,7 @@ http://www.springframework.org/schema/util http://www.springframework.org/schema
 	<!-- Daos -->
 	<bean id="userDao" class="br.com.tavernadodragao.dao.UserDao" autowire="byType" />
 	<bean id="campaignDao" class="br.com.tavernadodragao.dao.CampaignDao" autowire="byType" />
+	<bean id="activityDao" class="br.com.tavernadodragao.dao.ActivityDao" autowire="byType" />
 	
 	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

@@ -1,37 +1,39 @@
 package br.com.tavernadodragao.dao;
 
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.tavernadodragao.model.Campaign;
+import br.com.tavernadodragao.model.Activity;
 import br.com.tavernadodragao.model.User;
 
 @Repository
-public class CampaignDao extends AbstractDao<Campaign> {
+public class ActivityDao extends AbstractDao<Activity> {
 
-	public CampaignDao() {
-		super(Campaign.class);
+	protected ActivityDao() {
+		super(Activity.class);
 	}
-
+	
 	@Transactional(propagation=Propagation.REQUIRED)
 	public void deleteById(Long id) {
 		super.delete(super.find(id));
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
-	public Campaign save(Campaign campaign) {
-		return super.save(campaign);
+	public Activity save(Activity activity) {
+		return super.save(activity);
 	}
-	
+
 	@Transactional(propagation=Propagation.REQUIRED)
-	public boolean existsCampaign(Campaign campaign, User master) {
-		Criteria crit = session().createCriteria(Campaign.class);
-		crit.add(Restrictions.eq("name", campaign.getName()));
-		crit.add(Restrictions.eq("masterId", master.getId()));
-		campaign = (Campaign) crit.uniqueResult();
-		return campaign != null;
+	public List<Activity> findActivitiesFromUser(User user) {
+		Criteria crit = session().createCriteria(Activity.class);
+
+		crit.add(Restrictions.eq("userId", user.getId()));
+		return (List<Activity>) crit.list();
 	}
+
 }

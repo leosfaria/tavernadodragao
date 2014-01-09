@@ -6,7 +6,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import br.com.tavernadodragao.dao.ActivityDao;
 import br.com.tavernadodragao.dao.UserDao;
+import br.com.tavernadodragao.model.Activity;
 import br.com.tavernadodragao.model.Campaign;
 import br.com.tavernadodragao.model.User;
 
@@ -14,6 +16,9 @@ public abstract class AbstractController {
 
 	@Autowired
 	protected UserDao userDao;
+	
+	@Autowired
+	protected ActivityDao activityDao;
 	
 	protected List<User> getFriendsFromUser(User user) {
 		return userDao.find(user.getId()).getFriends();
@@ -31,5 +36,9 @@ public abstract class AbstractController {
 	
 	protected List<Campaign> getCampaignsFromUser(User user) {
 		return userDao.find(user.getId()).getCampaigns();
+	}
+	
+	protected List<Activity> getActivitiesFromUser(User user) {
+		return activityDao.findActivitiesFromUser(user);
 	}
 }

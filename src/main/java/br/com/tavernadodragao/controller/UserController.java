@@ -1,5 +1,7 @@
 package br.com.tavernadodragao.controller;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.tavernadodragao.model.Activity;
 import br.com.tavernadodragao.model.User;
 
 @Controller
@@ -46,7 +49,15 @@ public class UserController extends AbstractController {
 		friend.getFriendsRequests().add(user);
 		
 		userDao.save(friend);
-
+		
+		Activity activity = new Activity();
+		
+		activity.setUserId(user.getId());
+		activity.setMessage("Você adicionou " + friend.getUsername() + " a sua lista de amigos. Request pending...");
+		activity.setDate(new Date());
+		
+		activityDao.save(activity);
+		
 		request.getSession().setAttribute("logged", user);
 
 		return "redirect:main";
