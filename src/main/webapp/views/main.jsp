@@ -62,7 +62,8 @@
 					<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
 					<h3><c:out value="${ friendRequest.username }" /></h3>
 					<input type="hidden" name="accept_friend_id" value="${friendRequest.id}" />
-					<input type="submit" value="Add" />	
+					<input type="submit" value="Add" name="add" />
+					<input type="submit" value="Decline" name="decline" />	
 				</c:forEach>
 			</form>
 			</td>
