@@ -84,18 +84,17 @@ public class UserController extends AbstractController {
 			return "redirect:main";
 		
 		Long friendId = Long.decode(request.getParameter("friend_id"));
+		User friend = userDao.findUserById(friendId);
+		friend.setConfirmPassword(friend.getPassword());
 		
 		User user = getLoggedUser(request.getSession());
 		user.setConfirmPassword(user.getPassword());
 	
-		for (User friend : user.getFriends()) {
-			if (friend.getId() == friendId) {
-				user.getFriends().remove(friend);
-				break;
-			}
-		}
+		user.getFriends().remove(friend);
+		friend.getFriends().remove(user);
 
 		userDao.save(user);
+		userDao.save(friend);
 		
 		request.getSession().setAttribute("logged", user);
 		
