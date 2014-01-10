@@ -27,7 +27,7 @@ public class UserController extends AbstractController {
 	
 		model.addAttribute("friends", friends);
 		
-		return "main";
+		return "main2";
 	}
 	
 	@RequestMapping("addFriend")
@@ -38,11 +38,9 @@ public class UserController extends AbstractController {
 		Long friendId = Long.decode(request.getParameter("friend_id"));
 
 		User friend = userDao.findUserById(friendId);
-		friend.setConfirmPassword(friend.getPassword());
-
+		
 		User user = getLoggedUser(request.getSession());
-		user.setConfirmPassword(user.getPassword());
-
+		
 		friend.getFriendsRequests().add(user);
 		
 		userDao.save(friend);
@@ -62,10 +60,8 @@ public class UserController extends AbstractController {
 		Long friendId = Long.decode(request.getParameter("accept_friend_id"));
 
 		User friend = userDao.findUserById(friendId);
-		friend.setConfirmPassword(friend.getPassword());
 		
 		User user = getLoggedUser(request.getSession());
-		user.setConfirmPassword(user.getPassword());
 		
 		user.getFriendsRequests().remove(friend);
 		
@@ -94,11 +90,9 @@ public class UserController extends AbstractController {
 		
 		Long friendId = Long.decode(request.getParameter("friend_id"));
 		User friend = userDao.findUserById(friendId);
-		friend.setConfirmPassword(friend.getPassword());
 		
 		User user = getLoggedUser(request.getSession());
-		user.setConfirmPassword(user.getPassword());
-	
+		
 		user.getFriends().remove(friend);
 		friend.getFriends().remove(user);
 

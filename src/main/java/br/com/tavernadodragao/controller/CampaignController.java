@@ -32,12 +32,35 @@ public class CampaignController extends AbstractController {
 		
 		return "campaign";
 	}
+
+	@RequestMapping("enterCampaign")
+	public String enterCampaign(HttpServletRequest request, Model model) {
+		User user = getUserFromSession(request.getSession());
+		
+		Campaign campaign = campaignDao.getCampaignByName(request.getParameter("campaignName"));
+		
+		if (campaign.getMaster() == user.getId()) //Alterar depois para campaign.getMaster() != user.getId()
+		{
+			model.addAttribute("campaign", campaign);
+			model.addAttribute("party", campaign.getPlayers());
+			model.addAttribute("master", userDao.findUserById(campaign.getMaster()));
+			
+			return "campaignPlayer";
+		}
+		
+		return "campaignMaster";
+	}
+	
+	@RequestMapping("campaignChat")
+	public String chatCampaign(HttpServletRequest request, Model model) {
+
+		return enterCampaign(request, model);
+	}
 	
 	@RequestMapping("createCampaign")
 	public String createCampaign(HttpServletRequest request, Model model, @Valid @ModelAttribute Campaign campaign, BindingResult result) {
 
 		User user = getLoggedUser(request.getSession());
-		user.setConfirmPassword(user.getPassword());
 		
 		if (!result.hasErrors())
 		{		
@@ -63,7 +86,6 @@ public class CampaignController extends AbstractController {
 					
 					for (User friend : userList) {
 						friend.getCampaigns().add(campaign);
-						friend.setConfirmPassword(friend.getPassword());
 						
 						userDao.save(friend);
 						

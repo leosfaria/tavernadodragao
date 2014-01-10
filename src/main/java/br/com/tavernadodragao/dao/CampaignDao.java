@@ -34,4 +34,12 @@ public class CampaignDao extends AbstractDao<Campaign> {
 		campaign = (Campaign) crit.uniqueResult();
 		return campaign != null;
 	}
+
+	@Transactional(propagation=Propagation.REQUIRED)
+	public Campaign getCampaignByName(String campaignName) {
+		Criteria crit = session().createCriteria(Campaign.class);
+		crit.add(Restrictions.eq("name", campaignName));
+		
+		return (Campaign) crit.uniqueResult();
+	}
 }

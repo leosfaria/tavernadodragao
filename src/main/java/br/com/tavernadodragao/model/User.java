@@ -1,6 +1,7 @@
 package br.com.tavernadodragao.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -31,7 +32,7 @@ public class User {
 	@Size(min=3,max=15, message="Password deve ter de 3 a 15 caracteres")
 	private String password;
 	
-	@Transient
+	//@Transient
 	@NotBlank(message="Confirm Password deve ter de 3 a 15 caracteres")
 	@Size(min=3,max=15, message="Confirm Password deve ter de 3 a 15 caracteres")
 	private String confirmPassword;
@@ -56,6 +57,8 @@ public class User {
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="User_Campaign", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Campaign_ID")})
 	private List<Campaign> campaigns;
+	
+	private Date timeLogged;
 	
 	public Long getId() {
 		return id;
@@ -116,5 +119,11 @@ public class User {
 	}
 	public void setUsersRequests(List<User> usersRequests) {
 		this.usersRequests = usersRequests;
+	}
+	public Date getTimeLogged() {
+		return timeLogged;
+	}
+	public void setTimeLogged(Date timeLogged) {
+		this.timeLogged = timeLogged;
 	}
 }

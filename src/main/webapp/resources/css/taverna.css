@@ -1,0 +1,128 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.page {
+	width: 100%;
+	height: 1000px;
+	background-color: #099;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 0.8em;
+	color: 616161;
+}
+
+.page .header {
+	height: 10%;
+	background: url(images/img01.jpg) repeat-x left top;
+	background-size: 80px 120px;
+}
+
+.page .header .title {
+	width: 60%;
+	float: left;
+	margin-top: 15px;
+}
+
+.page .header .title a {
+	float: right;
+}
+
+.page .content {
+	height: 90%;
+	background-color: #FFFFFF;
+}
+
+.page .content .left {
+	height: 100%;
+	width: 10%;
+	float: left;
+}
+
+.page .content .middle {
+	height: 100%;
+	width: 60%;
+	float: left;
+}
+
+.page .content .right {
+	height: 100%;
+	width: 30%;
+	float: left;
+}
+
+.page .content .left .profile {
+	width: 100%;
+	height: 18%;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.page .content .left .menu {
+	width: 100%;
+	height: 82%;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.page .content .middle .search {
+	width: 100%;
+	height: 10%;
+	text-align: left;
+	margin-top: 20px;
+	margin-left: 150px;
+}
+
+.page .content .middle .search input {
+	width: 50%;
+	height: 26%;
+}
+
+.page .content .middle .activity {
+	width: 100%;
+	height: 90%;
+	text-align: left;
+	margin-left: 150px;
+}
+
+.page .content .right .friends {
+	width: 100%;
+	height: 30%;
+}
+
+.page .content .right .campaign {
+	width: 100%;
+	height: 70%;
+}
+
+h1, h2, h3 {
+	color: #A66100;
+}
+
+h1 {
+	font-size: 1.6em;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 1.6em;
+}
+
+h3 {
+	font-size: 1em;
+}
+
+a {
+	text-decoration: none;
+	color: #A66100;
+}
+
+a:hover {
+	border-bottom: none;
+}
+
+a img {
+	border: none;
+}
+
+}

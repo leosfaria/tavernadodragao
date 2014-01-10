@@ -89,7 +89,11 @@
 			<td align="center" valign="top">
 			<c:forEach var="campaign" items="${campaigns}">
 				<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1">
-				<h3><c:out value="${ campaign.name }" /></h3>
+				<form id="enterCampaign" action="enterCampaign" method="post">
+					<input type="submit" value="${ campaign.name }" name="campaignName">
+					<!--h3><c:out value="${ campaign.name }" /></h3>
+					<  h3  align="center">${logged.username}</h3>-->
+				</form>
 			</c:forEach>
 			</td>
 		</tr>

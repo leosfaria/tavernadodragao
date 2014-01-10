@@ -1,5 +1,7 @@
 package br.com.tavernadodragao.controller;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -35,6 +37,10 @@ public class LoginController extends AbstractController {
 		{
 			request.getSession().setAttribute("logged", existingUser);
 			
+			existingUser.setTimeLogged(new Date());
+			
+			userDao.save(existingUser);
+			
 			return "redirect:main";
 		}
 		
@@ -59,7 +65,7 @@ public class LoginController extends AbstractController {
 		
 		model.addAttribute("activities", getActivitiesFromUser(user));
 		
-		return "main";
+		return "main2";
 	}
 
 	@RequestMapping("logout")
@@ -80,6 +86,8 @@ public class LoginController extends AbstractController {
 				if(!userDao.existsUser(user)) {
 					if(user.getPassword().equals(user.getConfirmPassword()))
 					{
+						user.setTimeLogged(new Date());
+						
 						userDao.save(user);
 						
 						request.getSession().setAttribute("logged", user);
