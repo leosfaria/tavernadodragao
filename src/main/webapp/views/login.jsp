@@ -1,68 +1,93 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link type="text/css" rel="stylesheet" href="/resources/css/default.css">
+<title>Taverna Do Dragão</title>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
-	<h1>Taverna do Dragão</h1>
-
-	<table>
-		<form:form id="login" action="login" method="post">
-			<tr>
-				<td><label>Email:</label></td>
-				<td><input type="text" id="emailLogin" name="email"></td>
-				<td><label>Password:</label></td>
-				<td><input type="password" id="passwordLogin" name="password"></td>
-				<td><input type="submit" id="buttonLogin" value="Log In"></td>
-				<c:if test="${loginError.errorType == 'USER_OR_PASS_INVALID'}" >
-					<td style="color: red">${loginError.message}</td>
-				</c:if>
-			</tr>
-		</form:form>
-	</table>
-	<br>
-	<table align="center">
-		<form:form id="signup" action="signup" method="post"
-			commandName="user">
-			<tr>
-				<td><label>Username:</label></td>
-				<td><input type="text" id="usernameSignup" name="username"></td>
-				<td><form:errors path="username" cssStyle="color:red"
-						id="usernameSignup" /></td>
-			</tr>
-			<tr>
-				<td><label>Email:</label></td>
-				<td><input type="text" id="emailSignup" name="email"></td>
-				<td><form:errors path="email" cssStyle="color:red"
-						id="emailSignup" />
-					<c:if test="${loginError.errorType == 'EMAIL_ALREADY_IN_USE'}">
-						<td style="color: red">${loginError.message}</td>
-					</c:if>
-				</td>
-			</tr>
-			<tr>
-				<td><label>Password:</label></td>
-				<td><input type="password" id="passwordSignup" name="password"></td>
-				<td><form:errors path="password" cssStyle="color:red"
-						id="passwordSignup" /></td>
-				<c:if test="${loginError.errorType == 'PASS_AND_CONFIRM_DOESNT_MATCH'}">
-					<td style="color: red">${loginError.message}</td>
-				</c:if>
-			</tr>
-			<tr>
-				<td><label>Confirm Password:</label></td>
-				<td><input type="password" id="confirmPasswordSignup" name="confirmPassword"></td>
-				<td><form:errors path="confirmPassword" cssStyle="color:red"
-						id="confirmPasswordSignup" /></td>
-			</tr>
-			<tr>
-				<td></td>
-				<td><input type="submit" id="buttonSignup" value="Sign Up"></td>
-				<td></td>
-			</tr>
-		</form:form>
-	</table>
+	<div class="page">
+		<div class="header">
+			<div class="title">
+				<h1>Taverna Do Dragão</h1>
+				<div class="login">
+					<form:form id="login" action="login" method="post">
+						<label>Email:</label>
+						<input type="text" id="emailLogin" name="email">
+						<label>Password:</label>
+						<input type="password" id="passwordLogin" name="password">
+						<input type="submit" id="buttonLogin" value="Log In">
+						<c:if test="${loginError.errorType == 'USER_OR_PASS_INVALID'}" >
+							<label class="error">
+								<c:out value="${loginError.message}" />
+							</label>
+						</c:if>
+					</form:form>
+				</div>
+			</div>
+		</div>
+		<div class="content">
+			<form:form id="signup" action="signup" method="post" commandName="user">	
+				<div class="signup">
+					<div class="left">
+						<div>
+							<label>Username:</label>
+						</div>
+						<div>
+							<label>Email:</label>
+						</div>
+						<div>
+							<label>Password:</label>
+						</div>
+						<div>
+							<label>Confirm Password:</label>
+						</div>
+					</div>
+					<div class="right">
+						<div>
+							<input type="text" id="usernameSignup" name="username">
+						</div>
+						<div>
+							<input type="text" id="emailSignup" name="email">
+						</div>
+						<div>
+							<input type="password" id="passwordSignup" name="password">
+						</div>
+						<div>
+							<input type="password" id="confirmPasswordSignup" name="confirmPassword">
+						</div>
+						<div>
+							<input type="submit" id="buttonSignup" value="Sign Up">
+						</div>
+					</div>
+				</div>
+				<div class="signupError">
+					<div>
+						<form:errors path="username" cssStyle="color:red" id="usernameSignup" />
+					</div>
+					<div>
+						<form:errors path="email" cssStyle="color:red" id="emailSignup" />
+						<c:if test="${loginError.errorType == 'EMAIL_ALREADY_IN_USE'}">
+							<label class="error">
+								<c:out value="${loginError.message}" />
+							</label>
+						</c:if>
+					</div>
+					<div>
+						<form:errors path="password" cssStyle="color:red" id="passwordSignup" />
+						<c:if test="${loginError.errorType == 'PASS_AND_CONFIRM_DOESNT_MATCH'}">
+							<label class="error">
+								<c:out value="${loginError.message}" />
+							</label>
+						</c:if>
+					</div>
+					<div>
+						<form:errors path="confirmPassword" cssStyle="color:red" id="confirmPasswordSignup" />
+					</div>
+				</div>
+			</form:form>
+		</div>
+	</div>
 </body>
 </html>

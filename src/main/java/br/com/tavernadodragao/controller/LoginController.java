@@ -65,7 +65,7 @@ public class LoginController extends AbstractController {
 		
 		model.addAttribute("activities", getActivitiesFromUser(user));
 		
-		return "main2";
+		return "main";
 	}
 
 	@RequestMapping("logout")

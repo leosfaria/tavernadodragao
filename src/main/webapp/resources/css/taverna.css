@@ -22,6 +22,17 @@
 	width: 60%;
 	float: left;
 	margin-top: 15px;
+	margin-left: 10px;
+}
+
+.page .header .title .login {
+	float: left;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+.page .header .title .error {
+	color: red;
 }
 
 .page .header .title a {
@@ -31,6 +42,49 @@
 .page .content {
 	height: 90%;
 	background-color: #FFFFFF;
+}
+
+.page .content .error {
+	color: red;
+}
+
+.page .content .signup {
+	width: 20%;
+	height: 100%;
+	float: left;
+	margin-left: 500px;
+}
+
+.page .content .signup div {
+	width: 200px;
+	height: 28px;
+}
+
+.page .content .signup .left {
+	width: 50%;
+	height: 100%;
+	text-align: left;
+	margin-top: 10px;
+}
+
+.page .content .signup .right{
+	width: 50%;
+	height: 100%;
+	text-align: left;
+	margin-top: 10px;
+}
+
+.page .content .signupError {
+	width: 40%;
+	height: 100%;
+	float: left;
+	margin-top: 10px;
+	margin-left: 25px;
+}
+
+.page .content .signupError div {
+	width: 400px;
+	height: 28px;
 }
 
 .page .content .left {
@@ -43,6 +97,36 @@
 	height: 100%;
 	width: 60%;
 	float: left;
+}
+
+.page .content .middle .campaign {
+	height: 100%;
+	width: 60%;
+	float: left;
+	margin-left: 150px;
+}
+
+.page .content .middle .campaign .campaignHeader {
+	height: 8%;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.page .content .middle .campaign .campaignHeader .campaignField{
+	margin-top: 10px;
+}
+
+.page .content .middle .campaign .campaignBody {
+	height: 90%;
+	width: 100%;
+}
+
+.page .content .middle .campaign .campaignBody .campaignFriends{
+	margin-top: 10px;
+}
+
+.page .content .middle .campaign .campaignBody .campaignFriends .campaignFriend{
+	margin-top: 5px;	
 }
 
 .page .content .right {
@@ -90,9 +174,29 @@
 	height: 30%;
 }
 
+.page .content .right .friends .friendsList {
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+}
+
+.page .content .right .friends .friendsList img {
+	margin-top: 10px;
+}
+
 .page .content .right .campaign {
 	width: 100%;
 	height: 70%;
+}
+
+.page .content .right .campaign .campaignList {
+	width: 100%;
+	height: 100%;
+	margin-top: 10px;
+}
+
+.page .content .right .campaign .campaignList img {
+	margin-top: 10px;
 }
 
 h1, h2, h3 {

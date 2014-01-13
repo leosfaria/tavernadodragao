@@ -27,7 +27,7 @@ public class UserController extends AbstractController {
 	
 		model.addAttribute("friends", friends);
 		
-		return "main2";
+		return "main";
 	}
 	
 	@RequestMapping("addFriend")
