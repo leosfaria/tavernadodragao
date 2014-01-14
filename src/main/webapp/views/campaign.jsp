@@ -27,9 +27,6 @@
 				</div>
 				<div class="menu">
 					<ul>
-						<li><a href="#">Gurps ficha</a></li>
-						<li><a href="#">D&D ficha</a></li>
-						<li><a href="#">Vampire ficha</a></li>
 						<li><a href="#">Upload ficha</a></li>
 						<br>
 						<li><a href="/campaign">Criar uma Campanha</a></li>
