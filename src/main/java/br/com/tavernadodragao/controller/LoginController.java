@@ -44,7 +44,7 @@ public class LoginController extends AbstractController {
 			return "redirect:main";
 		}
 		
-		LoginError error = new LoginError(ErrorType.USER_OR_PASS_INVALID, "Email ou senha inválido");
+		LoginError error = new LoginError(ErrorType.USER_OR_PASS_INVALID, "Email or password invalid");
 		
 		model.addAttribute("loginError", error);
 		
@@ -96,12 +96,12 @@ public class LoginController extends AbstractController {
 					}
 					else
 					{
-						error = new LoginError(ErrorType.PASS_AND_CONFIRM_DOESNT_MATCH, "Password e Confirmação não conferem");
+						error = new LoginError(ErrorType.PASS_AND_CONFIRM_DOESNT_MATCH, "Password e Confirm Password doesn't match");
 					}
 				}
 				else
 				{
-					error = new LoginError(ErrorType.EMAIL_ALREADY_IN_USE, "Email já cadastrado");					
+					error = new LoginError(ErrorType.EMAIL_ALREADY_IN_USE, "Email already in use");					
 				}
 				
 				model.addAttribute("loginError", error);

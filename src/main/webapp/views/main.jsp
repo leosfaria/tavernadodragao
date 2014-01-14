@@ -11,7 +11,7 @@
 	<div class="page">
 		<div class="header">
 			<div class="title">
-				<h1>Eu era um aventureiro como você... Até levar uma flechada no joelho...</h1>
+				<h1>I used to be an adventurer like you but then i took an arrow to the knee...</h1>
 				<a href="logout">Logout</a>
 			</div>
 		</div>
@@ -27,9 +27,9 @@
 				</div>
 				<div class="menu">
 					<ul>
-						<li><a href="#">Upload ficha</a></li>
+						<li><a href="#">Upload Char</a></li>
 						<br>
-						<li><a href="/campaign">Criar uma Campanha</a></li>
+						<li><a href="/campaign">Create Campaign</a></li>
 					</ul>
 				</div>
 			</div>

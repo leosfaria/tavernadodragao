@@ -89,16 +89,16 @@ public class CampaignController extends AbstractController {
 						
 						userDao.save(friend);
 						
-						createNewActivity(friend.getId(), user.getUsername() + " criou a campanha " + campaign.getName() + " incluindo você!");
+						createNewActivity(friend.getId(), user.getUsername() + " create a new campaign " + campaign.getName() + " including you!");
 					}
 					
-					createNewActivity(user.getId(), "Você criou uma nova campanha " + campaign.getName() + "!");
+					createNewActivity(user.getId(), "You create a new campaign: " + campaign.getName() + "!");
 					
 					return "redirect:main";
 				}
 				else
 				{
-					error = new CampaignError(ErrorType.CAMPAIGN_ALREADY_EXISTS, "Campanha já cadastrada");					
+					error = new CampaignError(ErrorType.CAMPAIGN_ALREADY_EXISTS, "Campaign already in use");					
 				}
 				
 				model.addAttribute("campaignError", error);

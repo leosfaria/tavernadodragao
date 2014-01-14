@@ -45,7 +45,7 @@ public class UserController extends AbstractController {
 		
 		userDao.save(friend);
 		
-		createNewActivity(user.getId(), "Você adicionou " + friend.getUsername() + " a sua lista de amigos. Request pending...");
+		createNewActivity(user.getId(), "You add " + friend.getUsername() + " to your friend list. Request pending...");
 		
 		request.getSession().setAttribute("logged", user);
 
@@ -72,8 +72,8 @@ public class UserController extends AbstractController {
 			
 			userDao.save(friend);
 			
-			createNewActivity(user.getId(), "Você e " + friend.getUsername() + " agora são amigos!");
-			createNewActivity(friendId, user.getUsername() + " aprovou sua solicitação de amizade!");
+			createNewActivity(user.getId(), "You and " + friend.getUsername() + " are friends now!");
+			createNewActivity(friendId, user.getUsername() + " approved your friendship request!");
 		}
 
 		userDao.save(user);
