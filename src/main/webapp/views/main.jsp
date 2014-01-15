@@ -42,38 +42,48 @@
 					</form>
 				</div>
 				<div class="activity">
-					<c:forEach var="user" items="${userList}">
-						<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
-						<h3>${user.username}</h3>
-						
-						<c:set var="contains" value="false" />
-						<c:forEach var="friend" items="${friends}">
-							<c:if test="${friend.id eq user.id }">
-								<c:set var="contains" value="true" />
-							</c:if>
+					<table>
+						<c:forEach var="user" items="${userList}">
+							<tr>
+								<td class="img">
+									<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+								</td>
+								<td class="friendData">
+									<h3>${user.username}</h3>
+									<c:set var="contains" value="false" />
+									<c:forEach var="friend" items="${friends}">
+										<c:if test="${friend.id eq user.id }">
+											<c:set var="contains" value="true" />
+										</c:if>
+									</c:forEach>
+									<c:choose>
+										<c:when test="${ contains }">
+											<form action="unFriend" method="post">
+												<input type="submit" value="Unfriend"/>
+												<input type="hidden" name="friend_id" value="${user.id}" />
+											</form>
+										</c:when>
+										<c:otherwise>
+											<form action="addFriend" method="post">
+												<input type="submit" value="Add Friend"/>
+												<input type="hidden" name="friend_id" value="${user.id}" />
+											</form>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
 						</c:forEach>
-						<c:choose>
-							<c:when test="${ contains }">
-								<form action="unFriend" method="post">
-									<input type="submit" value="Unfriend"/>
-									<input type="hidden" name="friend_id" value="${user.id}" />
-								</form>
-							</c:when>
-							<c:otherwise>
-								<form action="addFriend" method="post">
-									<input type="submit" value="Add Friend"/>
-									<input type="hidden" name="friend_id" value="${user.id}" />
-								</form>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<b>Recent Activity</b> 
-					<br>
-					<c:forEach var="activity" items="${activities}">
+					</table>
+					<div class="clear"></div>
+					<div class="recentActivity">
+						<b>Recent Activity</b> 
 						<br>
-						<p><fmt:formatDate pattern="dd/MM/yyyy - HH:mm" value="${activity.date}" /></p>
-						<p>-   <c:out value="${ activity.message }" /></p>
-					</c:forEach>
+						<c:forEach var="activity" items="${activities}">
+							<br>
+							<p><fmt:formatDate pattern="dd/MM/yyyy - HH:mm" value="${activity.date}" /></p>
+							<p>-   <c:out value="${ activity.message }" /></p>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 			<div class="right">

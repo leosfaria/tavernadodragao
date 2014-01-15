@@ -93,6 +93,59 @@
 	float: left;
 }
 
+.page .content .left .profile {
+	width: 100%;
+	height: 18%;
+	text-align: center;
+	margin-top: 20px;
+}
+
+.page .content .left .menu {
+	width: 100%;
+	height: 82%;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.page .content .left .menuCampaign {
+	width: 100%;
+	height: 7%;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.page .content .left .dices{
+	width: 100%;
+	height: 75%;
+	text-align: left;
+	margin-left: 30px;
+}
+
+.page .content .left .dices .number{
+	width: 50%;
+	float: left;
+	margin-top: 5px;
+}
+
+.page .content .left .dices .number input{
+	width: 50%;
+	height: 22px;
+	margin-left: 20px;
+	margin-top: 2px;
+}
+
+.page .content .left .dices .roll{
+	width: 50%;
+	float: left;
+	margin-top: 5px;
+}
+
+.page .content .left .dices .roll img{
+	width: 50%;
+	float: left;
+	margin-top: 2px;
+}
+
 .page .content .middle {
 	height: 100%;
 	width: 60%;
@@ -129,26 +182,6 @@
 	margin-top: 5px;	
 }
 
-.page .content .right {
-	height: 100%;
-	width: 30%;
-	float: left;
-}
-
-.page .content .left .profile {
-	width: 100%;
-	height: 18%;
-	text-align: center;
-	margin-top: 20px;
-}
-
-.page .content .left .menu {
-	width: 100%;
-	height: 82%;
-	text-align: left;
-	margin-left: 30px;
-}
-
 .page .content .middle .search {
 	width: 100%;
 	height: 10%;
@@ -167,6 +200,35 @@
 	height: 90%;
 	text-align: left;
 	margin-left: 150px;
+}
+
+.page .content .middle .charactersheet {
+	width: 100%;
+	height: 57%;
+	margin-left: 150px;
+}
+
+.page .content .middle .chat {
+	width: 60%;
+	height: 43%;
+	margin-left: 150px;
+}
+
+.page .content .middle .chat input{
+	width: 80%;
+	margin-top: 10px;
+}
+
+.page .content .middle .chatView {
+	width: 100%;
+	height: 40%;
+	border: 1px solid #000;
+}
+
+.page .content .right {
+	height: 100%;
+	width: 30%;
+	float: left;
 }
 
 .page .content .right .friends {
@@ -229,4 +291,10 @@ a img {
 	border: none;
 }
 
-}
+.clear { clear:both; }
+
+.recentActivity { margin-top:10px; }
+
+.activity table { width:100%; }
+.activity td.img { width:8%;  }
+.activity td.friendData h3 { margin:3px;}
