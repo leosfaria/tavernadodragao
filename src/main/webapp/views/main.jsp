@@ -64,10 +64,23 @@
 											</form>
 										</c:when>
 										<c:otherwise>
-											<form action="addFriend" method="post">
-												<input type="submit" value="Add Friend"/>
-												<input type="hidden" name="friend_id" value="${user.id}" />
-											</form>
+											<c:set var="requestPending" value="false" />
+											<c:forEach var="friendRequest" items="${user.friendsRequests}">
+												<c:if test="${friendRequest.id eq logged.id }">
+													<c:set var="requestPending" value="true" />
+												</c:if>
+											</c:forEach>
+											<c:choose>
+												<c:when test="${ requestPending }">
+													<input type="submit" value="Request Pending" disabled="disabled"/>
+												</c:when>
+												<c:otherwise>
+													<form action="addFriend" method="post">
+														<input type="submit" value="Add Friend"/>
+														<input type="hidden" name="friend_id" value="${user.id}" />
+													</form>
+												</c:otherwise>
+											</c:choose>
 										</c:otherwise>
 									</c:choose>
 								</td>
