@@ -55,10 +55,11 @@ public class CampaignController extends AbstractController {
 			campaignDao.save(campaign);
 		}
 		
-		if (campaign.getMaster() == user.getId()) //Alterar depois para campaign.getMaster() != user.getId()
+		model.addAttribute("campaign", campaign);
+		model.addAttribute("party", campaign.getPlayers());
+		
+		if (campaign.getMaster() != user.getId())
 		{
-			model.addAttribute("campaign", campaign);
-			model.addAttribute("party", campaign.getPlayers());
 			model.addAttribute("master", userDao.findUserById(campaign.getMaster()));
 			
 			return "campaignPlayer";

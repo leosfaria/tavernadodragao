@@ -26,7 +26,7 @@ public abstract class AbstractController {
 	}
 	
 	protected User getUserFromSession(HttpSession session) {
-		return (User)session.getAttribute("logged");
+		return (User)session.getAttribute("userLogged");
 	}
 	
 	protected User getLoggedUser(HttpSession session) {

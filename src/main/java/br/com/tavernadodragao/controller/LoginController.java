@@ -35,7 +35,7 @@ public class LoginController extends AbstractController {
 		
 		if (existingUser != null)
 		{
-			request.getSession().setAttribute("logged", existingUser);
+			request.getSession().setAttribute("userLogged", existingUser);
 			
 			existingUser.setTimeLogged(new Date());
 			
@@ -90,7 +90,7 @@ public class LoginController extends AbstractController {
 						
 						userDao.save(user);
 						
-						request.getSession().setAttribute("logged", user);
+						request.getSession().setAttribute("userLogged", user);
 						
 						return "redirect:main";
 					}

@@ -47,7 +47,7 @@ public class UserController extends AbstractController {
 		
 		createNewActivity(user.getId(), "You add " + friend.getUsername() + " to your friend list. Request pending...");
 		
-		request.getSession().setAttribute("logged", user);
+		request.getSession().setAttribute("userLogged", user);
 
 		return "redirect:main";
 	}
@@ -78,7 +78,7 @@ public class UserController extends AbstractController {
 
 		userDao.save(user);
 		
-		request.getSession().setAttribute("logged", user);
+		request.getSession().setAttribute("userLogged", user);
 
 		return "redirect:main";
 	}
@@ -99,7 +99,7 @@ public class UserController extends AbstractController {
 		userDao.save(user);
 		userDao.save(friend);
 		
-		request.getSession().setAttribute("logged", user);
+		request.getSession().setAttribute("userLogged", user);
 		
 		return "redirect:main";
 	}

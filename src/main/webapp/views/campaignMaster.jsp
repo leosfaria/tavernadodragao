@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 	<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
 	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
-	<script src="../resources/js/campaignPlayer.js"></script>
+	<script src="../resources/js/campaignMaster.js"></script>
 </head>
 <body>
 	<div class="page">
@@ -81,10 +81,9 @@
 						</c:forEach>
 					</div>
 				</div>
-				<div class="master">
-					<h2>Master</h2>
-					<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
-					<h3><c:out value="${ master.username }" /></h3>
+				<div class="masterNotes">
+					<h2>Notes</h2>
+					<textarea rows="10" cols="10"></textarea>
 				</div>
 			</div>
 		</div>

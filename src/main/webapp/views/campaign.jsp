@@ -21,7 +21,7 @@
 					<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
 					<h3>
 						<a href="/main">
-							${logged.username}
+							${userLogged.username}
 						</a>
 					</h3>
 				</div>

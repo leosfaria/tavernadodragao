@@ -16,7 +16,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 				uri.contains("resources"))
 			return true;
 		
-		if (request.getSession().getAttribute("logged") != null)
+		if (request.getSession().getAttribute("userLogged") != null)
 			return true;
 		
 		response.sendRedirect("/");
