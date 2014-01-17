@@ -101,9 +101,15 @@
 			</div>
 			<div class="right">
 				<div class="friends">
-					<h2>Party</h2>
+					<c:choose>
+						<c:when test="${ friendsRequestsCount > 0 }">
+							<h2>Party (${ friendsRequestsCount })</h2>
+						</c:when>
+						<c:otherwise>
+							<h2>Party</h2>
+						</c:otherwise>
+					</c:choose>
 					<div class="friendsList">
-						<c:out value="${ friendsRequestsCount }" />
 						<c:forEach var="friend" items="${friends}">
 							<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
 							<h3><c:out value="${ friend.username }" /></h3>

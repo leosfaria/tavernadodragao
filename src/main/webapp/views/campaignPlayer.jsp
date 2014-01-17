@@ -3,9 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>Taverna Do Dragão</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
+	<title>Taverna Do Dragão</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+	<script src="../resources/js/campaignPlayer.js"></script>
 </head>
 <body>
 	<div class="page">
@@ -33,20 +35,20 @@
 				<div class="dices">
 					<h3>Dices</h3>
 					<div class="number">
-						<input type="text" name="d20" />
-						<input type="text" name="d12" />
-						<input type="text" name="d10" />
-						<input type="text" name="d8" />
-						<input type="text" name="d6" />
-						<input type="text" name="d4" />
+						<input type="text" id="d20" name="d20" value="1" />
+						<input type="text" id="d12" name="d12" value="1" />
+						<input type="text" id="d10" name="d10" value="1" />
+						<input type="text" id="d8" name="d8" value="1" />
+						<input type="text" id="d6" name="d6" value="3" />
+						<input type="text" id="d4" name="d4" value="1" />
 					</div>
 					<div class="roll">
-						<img src="../resources/css/images/d20.jpg" height="20" width="24" border="1">
-						<img src="../resources/css/images/d12.jpg" height="20" width="24" border="1">
-						<img src="../resources/css/images/d10.jpg" height="20" width="24" border="1">
-						<img src="../resources/css/images/d8.jpg" height="20" width="24" border="1">
-						<img src="../resources/css/images/d6.jpg" height="20" width="24" border="1">
-						<img src="../resources/css/images/d4.jpg" height="20" width="24" border="1">
+						<img id="d20Button" src="../resources/css/images/d20.jpg" height="20" width="24" border="1">
+						<img id="d12Button" src="../resources/css/images/d12.jpg" height="20" width="24" border="1">
+						<img id="d10Button" src="../resources/css/images/d10.jpg" height="20" width="24" border="1">
+						<img id="d8Button" src="../resources/css/images/d8.jpg" height="20" width="24" border="1">
+						<img id="d6Button" src="../resources/css/images/d6.jpg" height="20" width="24" border="1">
+						<img id="d4Button" src="../resources/css/images/d4.jpg" height="20" width="24" border="1">
 					</div>
 				</div>
 			</div>
@@ -56,9 +58,16 @@
 				</div>
 				<div class="chat">
 					<div class="chatView">
+						<c:forEach var="msg" items="${campaign.messages}">
+							<div>
+								<label>${ msg.username } : </label>
+								<label>${ msg.message }</label>
+							</div>
+						</c:forEach>
 					</div>
-					<form id="campaignChat" action="campaignChat" method="post">
+					<form id="campaignChat" action="enterCampaign" method="post">
 						<input type="text" name="message" />
+						<input type="hidden" name="campaignName" value="${campaign.name}">
 					</form>
 				</div>
 			</div>
