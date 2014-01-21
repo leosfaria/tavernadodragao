@@ -1,9 +1,17 @@
 $(document).ready(function() {
 			$('#d20Button').bind('click', function(){
-				var random = Math.random() * 1000;
-				$('#d20').val();
+				var random;
+				var result = 'Roll: ';
 				
-				alert(parseInt((random % 20) + 1));
+				var rolls = $('#d20').val();
+				
+				for(var i = 0; i < rolls; i++)
+				{
+					random = Math.random() * 1000;
+					result.concat(i + ' - ' + parseInt((random % 20) + 1) + '; ');
+				}
+				
+				alert(result);
 			});
 			$('#d12Button').bind('click', function(){
 				alert('d12');

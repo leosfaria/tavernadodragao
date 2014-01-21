@@ -57,18 +57,18 @@
 					<img src="../resources/css/images/charactersheet.jpg" height="500" width="500" border="1">
 				</div>
 				<div class="chat">
-					<div class="chatView">
-						<c:forEach var="msg" items="${campaign.messages}">
+					<div id="chatView" class="chatView">
+						<!--<c:forEach var="msg" items="${campaign.messages}">
 							<div>
 								<label>${ msg.username } : </label>
 								<label>${ msg.message }</label>
 							</div>
-						</c:forEach>
+						</c:forEach> -->
 					</div>
-					<form id="campaignChat" action="enterCampaign" method="post">
-						<input type="text" name="message" />
-						<input type="hidden" name="campaignName" value="${campaign.name}">
-					</form>
+					<!--  <form id="campaignChat" action="enterCampaign" method="post">-->
+						<input type="text" id="message" name="message" />
+						<input type="hidden" id="campaignName" name="campaignName" value="${campaign.name}">
+					<!--  /form>-->
 				</div>
 			</div>
 			<div class="right">
