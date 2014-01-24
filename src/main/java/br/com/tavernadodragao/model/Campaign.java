@@ -30,10 +30,6 @@ public class Campaign {
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="Campaign_Players", joinColumns={@JoinColumn(name="Campaign_ID")}, inverseJoinColumns={@JoinColumn(name="User_ID")})
 	private List<User> players;
-	
-	@OneToMany(cascade={CascadeType.ALL})
-	@JoinTable(name="Campaign_Messages", joinColumns={@JoinColumn(name="Campaign_ID")}, inverseJoinColumns={@JoinColumn(name="Message_ID")})
-	private List<Message> messages;
 
 	public String getName() {
 		return name;
@@ -73,13 +69,5 @@ public class Campaign {
 
 	public void setMasterId(Long masterId) {
 		this.masterId = masterId;
-	}
-
-	public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
 	}
 }

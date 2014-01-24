@@ -13,9 +13,13 @@ public class Message {
 	@GeneratedValue
 	private Long id;
 
-	private String username;
+	private String sender;
+	
+	private String receiver;
 	
 	private String message;
+	
+	private String type;
 	
 	private Date date;
 
@@ -27,12 +31,12 @@ public class Message {
 		this.id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getFrom() {
+		return sender;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setFrom(String from) {
+		this.sender = from;
 	}
 
 	public String getMessage() {
@@ -49,5 +53,21 @@ public class Message {
 
 	public void setDate(Date date) {
 		this.date = date;
+	}
+
+	public String getTo() {
+		return receiver;
+	}
+
+	public void setTo(String to) {
+		this.receiver = to;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 }

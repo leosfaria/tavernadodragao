@@ -12,7 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -32,7 +31,6 @@ public class User {
 	@Size(min=3,max=15, message="Password deve ter de 3 a 15 caracteres")
 	private String password;
 	
-	//@Transient
 	@NotBlank(message="Confirm Password deve ter de 3 a 15 caracteres")
 	@Size(min=3,max=15, message="Confirm Password deve ter de 3 a 15 caracteres")
 	private String confirmPassword;
@@ -57,6 +55,14 @@ public class User {
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="User_Campaign", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Campaign_ID")})
 	private List<Campaign> campaigns;
+	
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_MessageReceived", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Message_ID")})
+	private List<Message> messagesReceived;
+	
+	@ManyToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_MessagePending", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Message_ID")})
+	private List<Message> messagesPendings;
 	
 	private Date timeLogged;
 	
@@ -125,5 +131,17 @@ public class User {
 	}
 	public void setTimeLogged(Date timeLogged) {
 		this.timeLogged = timeLogged;
+	}
+	public List<Message> getMessagesReceived() {
+		return messagesReceived;
+	}
+	public void setMessagesReceived(List<Message> messagesReceived) {
+		this.messagesReceived = messagesReceived;
+	}
+	public List<Message> getMessagesPendings() {
+		return messagesPendings;
+	}
+	public void setMessagesPendings(List<Message> messagesPendings) {
+		this.messagesPendings = messagesPendings;
 	}
 }

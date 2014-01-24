@@ -58,17 +58,9 @@
 				</div>
 				<div class="chat">
 					<div id="chatView" class="chatView">
-						<!--<c:forEach var="msg" items="${campaign.messages}">
-							<div>
-								<label>${ msg.username } : </label>
-								<label>${ msg.message }</label>
-							</div>
-						</c:forEach> -->
-					</div>
-					<!--  <form id="campaignChat" action="enterCampaign" method="post">-->
-						<input type="text" id="message" name="message" />
-						<input type="hidden" id="campaignName" name="campaignName" value="${campaign.name}">
-					<!--  /form>-->
+					</div>					
+					<input type="text" id="message" name="message" />
+					<input type="hidden" id="campaignName" name="campaignName" value="${campaign.name}">
 				</div>
 			</div>
 			<div class="right">

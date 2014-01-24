@@ -1,5 +1,8 @@
 package br.com.tavernadodragao.dao;
 
+import java.util.Date;
+import java.util.List;
+
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -7,6 +10,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.tavernadodragao.model.Campaign;
+import br.com.tavernadodragao.model.Message;
 import br.com.tavernadodragao.model.User;
 
 @Repository
