@@ -1,6 +1,6 @@
 function generateRandomNumber(dice) {
 	var random;
-	var result = 'Roll: ';
+	var result = ' d' + dice + ' roll: ';
 	
 	var rolls = $('#d' + dice).val();
 	
@@ -16,30 +16,60 @@ function generateRandomNumber(dice) {
 
 $(document).ready(function() {
 			$('#d20Button').bind('click', function(){
-				alert(generateRandomNumber(20));
+				$('#message').val(generateRandomNumber(20));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			$('#d12Button').bind('click', function(){
-				alert(generateRandomNumber(12));
+				$('#message').val(generateRandomNumber(12));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			$('#d10Button').bind('click', function(){
-				alert(generateRandomNumber(10));
+				$('#message').val(generateRandomNumber(10));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			$('#d8Button').bind('click', function(){
-				alert(generateRandomNumber(8));
+				$('#message').val(generateRandomNumber(8));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			$('#d6Button').bind('click', function(){
-				alert(generateRandomNumber(6));
+				$('#message').val(generateRandomNumber(6));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			$('#d4Button').bind('click', function(){
-				alert(generateRandomNumber(4));
+				$('#message').val(generateRandomNumber(4));
+
+				var e = jQuery.Event("keypress");
+				e.which = 13;
+				e.keyCode = 13;
+				$('#message').trigger(e);
 			});
 			
 			$('#message').bind('keypress', function(event) {
 				if (event.keyCode == 13) {
 					$.ajax({
 						type:'POST',
-						data: 'message=' + $('#message').val() + '&campaignName=' + $('#campaignName').val(),
-						url: 'http://192.168.1.3:8081/chatCampaign',
+						data: 'message=' + $('#message').val() + '&campaignId=' + $('#campaignId').val(),
+						url: 'http://172.20.22.65:8081/chatCampaign',
 						success: function(response) {
 							var message = eval( "(" + response + ")");
 							$('#chatView').append( message[0].user + ":" + message[0].msg + "<br>");
@@ -55,8 +85,8 @@ $(document).ready(function() {
 			window.setInterval(function(){
 				$.ajax({
 					type:'POST',
-					data: 'campaignName=' + $('#campaignName').val(),
-					url: 'http://192.168.1.3:8081/chatCampaign',
+					data: 'campaignId=' + $('#campaignId').val(),
+					url: 'http://172.20.22.65:8081/chatCampaign',
 					success: function(response) {
 						var message = eval( "(" + response + ")");
 						

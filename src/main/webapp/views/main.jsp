@@ -131,7 +131,7 @@
 						<c:forEach var="campaign" items="${campaigns}">
 							<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1">
 							<h3>
-								<a href="/enterCampaign?campaignName=${ campaign.name }"  >
+								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
 									${ campaign.name }
 								</a>
 							</h3>

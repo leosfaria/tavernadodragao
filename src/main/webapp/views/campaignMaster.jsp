@@ -60,7 +60,7 @@
 					<div id="chatView" class="chatView">
 					</div>					
 					<input type="text" id="message" name="message" />
-					<input type="hidden" id="campaignName" name="campaignName" value="${campaign.name}">
+					<input type="hidden" id="campaignId" name="campaignId" value="${campaign.id}">
 				</div>
 			</div>
 			<div class="right">

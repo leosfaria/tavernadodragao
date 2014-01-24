@@ -30,7 +30,7 @@ public class ChatController extends AbstractController {
 	public @ResponseBody String chatCampaign(HttpServletRequest request, Model model) {
 		User userLogged = getLoggedUser(request.getSession());
 		
-		Campaign campaign = campaignDao.getCampaignByName(request.getParameter("campaignName"));
+		Campaign campaign = campaignDao.getCampaignById(Long.parseLong(request.getParameter("campaignId")));
 		
 		String message = request.getParameter("message");
 		

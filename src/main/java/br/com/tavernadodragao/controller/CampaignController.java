@@ -37,7 +37,7 @@ public class CampaignController extends AbstractController {
 	public String enterCampaign(HttpServletRequest request, Model model) {
 		User user = getUserFromSession(request.getSession());
 		
-		Campaign campaign = campaignDao.getCampaignByName(request.getParameter("campaignName"));
+		Campaign campaign = campaignDao.getCampaignById(Long.parseLong(request.getParameter("campaignId")));
 		
 		model.addAttribute("campaign", campaign);
 		model.addAttribute("party", campaign.getPlayers());
