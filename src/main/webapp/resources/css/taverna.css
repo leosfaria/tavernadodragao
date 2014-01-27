@@ -116,13 +116,13 @@
 
 .page .content .left .dices{
 	width: 100%;
-	height: 75%;
+	height: 20%;
 	text-align: left;
 	margin-left: 30px;
 }
 
 .page .content .left .dices .number{
-	width: 50%;
+	width: 40%;
 	float: left;
 	margin-top: 5px;
 }
@@ -135,15 +135,32 @@
 }
 
 .page .content .left .dices .roll{
-	width: 50%;
+	width: 25%;
 	float: left;
 	margin-top: 5px;
 }
 
 .page .content .left .dices .roll img{
-	width: 50%;
 	float: left;
 	margin-top: 2px;
+}
+
+.page .content .left .dices .plus{
+	width: 10%;
+	float: left;
+	margin-top: 5px;
+}
+
+.page .content .left .dices .plus button{
+	margin-top: 2px;
+	width: 20px;
+	height: 22px;
+}
+
+.page .content .left .dices .rollResult{
+	width: 100%;
+	float: left;
+	margin-top: 5px;
 }
 
 .page .content .middle {

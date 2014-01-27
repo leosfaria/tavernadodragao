@@ -18,6 +18,8 @@ public abstract class AbstractController {
 	@Autowired
 	protected UserDao userDao;
 	
+	public String url = "http://172.20.22.65:8081";
+	
 	@Autowired
 	protected ActivityDao activityDao;
 	
@@ -51,5 +53,9 @@ public abstract class AbstractController {
 		activity.setDate(new Date());
 		
 		activityDao.save(activity);
+	}
+	
+	public String getUrl() {
+		return this.url;
 	}
 }

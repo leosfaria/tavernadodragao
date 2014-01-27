@@ -13,7 +13,7 @@
 	<div class="page">
 		<div class="header">
 			<div class="title">
-				<h1>I used to be an adventurer like you but then i took an arrow to the knee...</h1>
+				<h1>I used to be an adventurer like you, then I took an arrow to the knee...</h1>
 				<a href="logout">Logout</a>
 			</div>
 		</div>
@@ -50,6 +50,15 @@
 						<img id="d6Button" src="../resources/css/images/d6.jpg" height="20" width="24" border="1">
 						<img id="d4Button" src="../resources/css/images/d4.jpg" height="20" width="24" border="1">
 					</div>
+					<div class="plus">
+						<button id="d20PlusButton">+</button>
+						<button id="d12PlusButton">+</button>
+						<button id="d10PlusButton">+</button>
+						<button id="d8PlusButton">+</button>
+						<button id="d6PlusButton">+</button>
+						<button id="d4PlusButton">+</button>
+					</div>
+					<div id="rollResult" class="rollResult">Result:</div>
 				</div>
 			</div>
 			<div class="middle">

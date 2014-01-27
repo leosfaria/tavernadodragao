@@ -24,7 +24,7 @@ public class LoginController extends AbstractController {
 			return "redirect:main";
 		
 		model.addAttribute("user", new User());
-		
+
 		return "login";
 	}
 	
