@@ -18,7 +18,9 @@
 		<div class="content">
 			<div class="left">
 				<div class="profile">
-					<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					<a href="/main">
+						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					</a>
 					<h3>
 						<a href="/main">
 							${userLogged.username}
@@ -129,7 +131,9 @@
 					<h2>Campaigns</h2>
 					<div class="campaignList">
 						<c:forEach var="campaign" items="${campaigns}">
-							<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1">
+							<a href="/enterCampaign?campaignId=${ campaign.id }" >
+								<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1px">
+							</a>
 							<h3>
 								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
 									${ campaign.name }

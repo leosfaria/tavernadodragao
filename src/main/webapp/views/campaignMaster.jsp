@@ -20,7 +20,9 @@
 		<div class="content">
 			<div class="left">
 				<div class="profile">
-					<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					<a href="/main">
+						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					</a>
 					<h3>
 						<a href="/main">
 							${userLogged.username}

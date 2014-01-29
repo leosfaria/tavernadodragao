@@ -303,12 +303,8 @@ a {
 	color: #A66100;
 }
 
-a:hover {
-	border-bottom: none;
-}
-
 a img {
-	border: none;
+	color: black;
 }
 
 .clear { clear:both; }
