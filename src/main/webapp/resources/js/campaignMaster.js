@@ -1,3 +1,6 @@
+var colors = ["red", "green", "blue", "black", "yellow"];
+var players = new Array();
+
 function generateRandomNumber(dice) {
 	var random;
 	
@@ -98,8 +101,18 @@ $(document).ready(function() {
 					success: function(response) {
 						var message = eval( "(" + response + ")");
 						
-						message.forEach(function (msg) {
-							$('#chatView').append( msg.user + ":" + msg.msg + "<br>");
+						message.forEach(function (msg) {								
+							var playerIndex = players.indexOf(msg.user);
+							
+							if (playerIndex == -1) {
+								players.push(msg.user);
+								playerIndex = players.indexOf(msg.user);
+							}
+								
+							if (playerIndex > 4)
+								playerIndex = playerIndex % 5;
+							
+							$('#chatView').append("<font color=\"" + colors[playerIndex] + "\">" + msg.user + ":</font>" + msg.msg + "<br>");
 						});
 					},
 					error:function(request,status,errorThrown){
