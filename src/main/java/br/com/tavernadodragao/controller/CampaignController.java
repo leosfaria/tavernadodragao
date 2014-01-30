@@ -29,6 +29,7 @@ public class CampaignController extends AbstractController {
 		User user = getUserFromSession(request.getSession());
 		
 		model.addAttribute("friends", getFriendsFromUser(user));
+		model.addAttribute("existingCampaigns", campaignDao.getCampaigns(user));
 		
 		return "campaign";
 	}
@@ -42,9 +43,9 @@ public class CampaignController extends AbstractController {
 		model.addAttribute("campaign", campaign);
 		model.addAttribute("party", campaign.getPlayers());
 		
-		if (campaign.getMaster() != user.getId())
+		if (campaign.getMasterId() != user.getId())
 		{
-			model.addAttribute("master", userDao.findUserById(campaign.getMaster()));
+			model.addAttribute("master", userDao.findUserById(campaign.getMasterId()));
 			
 			return "campaignPlayer";
 		}
@@ -65,7 +66,8 @@ public class CampaignController extends AbstractController {
 				if(!campaignDao.existsCampaign(campaign, user)) {
 					ArrayList<User> userList = new ArrayList<User>();
 					
-					campaign.setMaster(user.getId());
+					campaign.setMasterId(user.getId());
+					campaign.setMasterName(user.getUsername());
 					
 					for (User friend : user.getFriends()) {
 						if (request.getParameter(friend.getUsername()) != null)
@@ -103,6 +105,7 @@ public class CampaignController extends AbstractController {
 		}
 		
 		model.addAttribute("friends", getFriendsFromUser(user));
+		model.addAttribute("existingCampaigns", campaignDao.getCampaigns(user));
 		
 		return "campaign";
 	}

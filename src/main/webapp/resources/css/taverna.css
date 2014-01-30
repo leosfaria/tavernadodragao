@@ -163,6 +163,17 @@
 	margin-top: 5px;
 }
 
+.page .content .left .campaignCreatedList {
+	width: 100%;
+	height: 30%;
+	overflow: auto;
+}
+
+.page .content .left .campaignCreatedList div {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
 .page .content .middle {
 	height: 100%;
 	width: 60%;
@@ -271,7 +282,7 @@
 }
 
 .page .content .right .campaign .campaignList {
-	width: 100%;
+	width: 80%;
 	height: 50%;
 	margin-top: 10px;
 	overflow: auto;

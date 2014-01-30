@@ -18,19 +18,28 @@
 		<div class="content">
 			<div class="left">
 				<div class="profile">
-					<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					<a href="/main">
+						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+					</a>
 					<h3>
 						<a href="/main">
 							${userLogged.username}
 						</a>
 					</h3>
 				</div>
-				<div class="menu">
-					<ul>
-						<li><a href="#">Upload Char</a></li>
-						<br>
-						<li><a href="/campaign">Create Campaign</a></li>
-					</ul>
+				<div id="campaignCreatedList" class="campaignCreatedList">
+					<c:forEach var="campaign" items="${existingCampaigns}">
+						<div>
+							<a href="/enterCampaign?campaignId=${ campaign.id }" >
+								<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1px">
+							</a>
+							<h3>
+								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
+									${ campaign.name }
+								</a>
+							</h3>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 			<div class="middle">

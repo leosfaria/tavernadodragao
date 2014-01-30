@@ -136,7 +136,15 @@
 							</a>
 							<h3>
 								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
-									${ campaign.name }
+									<c:choose>
+										<c:when test="${ campaign.masterId == userLogged.id }">
+											${ campaign.name }
+										</c:when>
+										<c:otherwise>
+											${ campaign.name }, ${ campaign.masterName }
+										</c:otherwise>
+									</c:choose>
+									
 								</a>
 							</h3>
 						</c:forEach>

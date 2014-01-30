@@ -9,7 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -26,6 +25,7 @@ public class Campaign {
 	private String name;
 	
 	private Long masterId;
+	private String masterName;
 	
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="Campaign_Players", joinColumns={@JoinColumn(name="Campaign_ID")}, inverseJoinColumns={@JoinColumn(name="User_ID")})
@@ -47,14 +47,6 @@ public class Campaign {
 		this.players = players;
 	}
 
-	public Long getMaster() {
-		return masterId;
-	}
-
-	public void setMaster(Long masterId) {
-		this.masterId = masterId;
-	}
-
 	public Long getId() {
 		return id;
 	}
@@ -69,5 +61,13 @@ public class Campaign {
 
 	public void setMasterId(Long masterId) {
 		this.masterId = masterId;
+	}
+
+	public String getMasterName() {
+		return masterName;
+	}
+
+	public void setMasterName(String masterName) {
+		this.masterName = masterName;
 	}
 }

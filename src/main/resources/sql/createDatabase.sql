@@ -6,7 +6,7 @@ INSERT INTO User_Friends (User_ID, Friend_ID) values (1, 4);
 INSERT INTO User_Friends (User_ID, Friend_ID) values (4, 1);
 INSERT INTO User_Friends (User_ID, Friend_ID) values (2, 4);
 INSERT INTO User_Friends (User_ID, Friend_ID) values (4, 2);
-INSERT INTO Campaign (id, masterId, name) values (1, 4, 'Teste');
+INSERT INTO Campaign (id, masterId, masterName, name) values (1, 4, 'asd', 'Teste');
 INSERT INTO Campaign_Players (Campaign_ID, User_ID) values (1, 1);
 INSERT INTO Campaign_Players (Campaign_ID, User_ID) values (1, 2);
 INSERT INTO User_Campaign (User_ID, Campaign_ID) values (4, 1);
