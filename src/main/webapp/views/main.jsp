@@ -3,9 +3,11 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <html>
 <head>
-<title>Taverna Do Dragão</title>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
+	<title>Taverna Do Dragão</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link href="/resources/css/taverna.css" type="text/css" rel="stylesheet" />
+	<script src="http://code.jquery.com/jquery-1.9.0.js"></script>
+	<script src="../resources/js/main.js"></script>
 </head>
 <body>
 	<div class="page">
@@ -39,56 +41,58 @@
 				<div class="search">
 					<form id="search" action="search" method="post">
 						<input type="text" id="searchInput" name="searchInput">
-						<a href="#" onclick="document.forms['search'].submit(); return false;">
+						<a href="#" id="searchLink">
 						<img src="../resources/css/images/lupinha.jpg"></a>
 					</form>
+					<div id="resultDisplay" class="resultDisplay">
+						<table id="resultSearchTable">
+							<c:forEach var="user" items="${userList}">
+								<tr>
+									<td class="img">
+										<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+									</td>
+									<td class="friendData">
+										<h3>${user.username}</h3>
+										<c:set var="contains" value="false" />
+										<c:forEach var="friend" items="${friends}">
+											<c:if test="${friend.id eq user.id }">
+												<c:set var="contains" value="true" />
+											</c:if>
+										</c:forEach>
+										<c:choose>
+											<c:when test="${ contains }">
+												<form action="unFriend" method="post">
+													<input type="submit" value="Unfriend"/>
+													<input type="hidden" name="friend_id" value="${user.id}" />
+												</form>
+											</c:when>
+											<c:otherwise>
+												<c:set var="requestPending" value="false" />
+												<c:forEach var="friendRequest" items="${user.friendsRequests}">
+													<c:if test="${friendRequest.id eq userLogged.id }">
+														<c:set var="requestPending" value="true" />
+													</c:if>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${ requestPending }">
+														<input type="submit" value="Request Pending" disabled="disabled"/>
+													</c:when>
+													<c:otherwise>
+														<form action="addFriend" method="post">
+															<input type="submit" value="Add Friend"/>
+															<input type="hidden" name="friend_id" value="${user.id}" />
+														</form>
+													</c:otherwise>
+												</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</td>
+								</tr>
+							</c:forEach>
+						</table>
+					</div>
 				</div>
 				<div class="activity">
-					<table>
-						<c:forEach var="user" items="${userList}">
-							<tr>
-								<td class="img">
-									<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
-								</td>
-								<td class="friendData">
-									<h3>${user.username}</h3>
-									<c:set var="contains" value="false" />
-									<c:forEach var="friend" items="${friends}">
-										<c:if test="${friend.id eq user.id }">
-											<c:set var="contains" value="true" />
-										</c:if>
-									</c:forEach>
-									<c:choose>
-										<c:when test="${ contains }">
-											<form action="unFriend" method="post">
-												<input type="submit" value="Unfriend"/>
-												<input type="hidden" name="friend_id" value="${user.id}" />
-											</form>
-										</c:when>
-										<c:otherwise>
-											<c:set var="requestPending" value="false" />
-											<c:forEach var="friendRequest" items="${user.friendsRequests}">
-												<c:if test="${friendRequest.id eq userLogged.id }">
-													<c:set var="requestPending" value="true" />
-												</c:if>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${ requestPending }">
-													<input type="submit" value="Request Pending" disabled="disabled"/>
-												</c:when>
-												<c:otherwise>
-													<form action="addFriend" method="post">
-														<input type="submit" value="Add Friend"/>
-														<input type="hidden" name="friend_id" value="${user.id}" />
-													</form>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</td>
-							</tr>
-						</c:forEach>
-					</table>
 					<div class="clear"></div>
 					<div class="recentActivity">
 						<b>Recent Activity</b> 

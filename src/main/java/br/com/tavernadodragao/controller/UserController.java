@@ -27,6 +27,8 @@ public class UserController extends AbstractController {
 	
 		model.addAttribute("friends", friends);
 		
+		model.addAttribute("activities", getActivitiesFromUser(user));
+		
 		return "main";
 	}
 	

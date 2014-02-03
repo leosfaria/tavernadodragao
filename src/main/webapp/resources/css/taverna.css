@@ -218,6 +218,15 @@
 	margin-left: 150px;
 }
 
+.page .content .middle .search .resultDisplay {
+	width: 300px;
+	height: 300px;
+	background-color: transparent;
+	z-index: 1;
+	position: absolute;
+	
+}
+
 .page .content .middle .search input {
 	width: 50%;
 	height: 26%;
