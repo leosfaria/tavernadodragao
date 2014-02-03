@@ -1,6 +1,7 @@
 package br.com.tavernadodragao.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.tavernadodragao.dao.CampaignDao;
 import br.com.tavernadodragao.error.CampaignError;
@@ -108,5 +110,22 @@ public class CampaignController extends AbstractController {
 		model.addAttribute("existingCampaigns", campaignDao.getCampaigns(user));
 		
 		return "campaign";
+	}
+	
+	@RequestMapping("searchFriendCampaign")
+	public @ResponseBody String searchFriendCampaign(HttpServletRequest request, Model model) {
+		String response = "[";
+		
+		User userLogged = getLoggedUser(request.getSession());
+		
+		List<User> userList = userDao.findUsersByUsername(request.getParameter("user"), userLogged);
+		
+		for (User user : userList) {
+			response = response + "{userId: '" + user.getId() + "', username: '" + user.getUsername() + "'},";
+		}
+		
+		response = response + "]";
+		
+		return response;
 	}
 }

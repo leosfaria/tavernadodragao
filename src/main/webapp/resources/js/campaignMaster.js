@@ -37,7 +37,51 @@ function generateRandomNumberPlus(dice) {
 	return result;
 }
 
-$(document).ready(function() {
+$(document).click(function() {
+ 	if($('#addFriend').attr('type') == "text")
+	{
+ 		$('#addFriend').attr('type', 'button');
+ 		$('#addFriend').val("Add friend");
+ 		
+ 		$('#searchFriendView').html("");
+ 		$('#searchFriendView').css("background-color", "transparent");
+		$('#searchFriendView').css("width", "1px");
+		$('#searchFriendView').css("height", "1px");
+	}
+});
+
+$(document).ready(function() {	
+			$('#addFriend').bind('click', function(event){
+					$('#addFriend').attr('type', 'text');
+					$('#addFriend').val("");
+					
+					event.stopPropagation();
+			});
+			$('#addFriend').bind('keypress', function(event) {
+				if (event.keyCode == 13) {
+					$.ajax({
+						type:'POST',
+						data: {user: $('#addFriend').val()},
+						url: 'http://tavernadodragao.com.br:8081/searchFriendCampaign',
+						success: function(response) {
+							var message = eval( "(" + response + ")");
+							var userCount = 0;
+							message.forEach(function (msg) { 
+								$('#searchFriendView').append( msg.username + "<br>");
+								userCount++;
+							});
+							$('#searchFriendView').css("background-color", "rgb(224, 224, 224)");
+							$('#searchFriendView').css("width", $('#addFriend').width().toString());
+							$('#searchFriendView').css("height", userCount * 20);
+						},
+						error:function(request,status,errorThrown){
+						}
+					});
+					
+					$('#addFriend').val("");
+				}
+			});
+	
 			$('#d20Button').bind('click', function(){
 				$('#rollResult').html("Result:<br>" + generateRandomNumber(20));
 			});

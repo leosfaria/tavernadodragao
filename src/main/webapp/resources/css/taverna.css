@@ -224,7 +224,6 @@
 	background-color: transparent;
 	z-index: 1;
 	position: absolute;
-	
 }
 
 .page .content .middle .search input {
@@ -272,6 +271,29 @@
 .page .content .right .friends {
 	width: 100%;
 	height: 30%;
+}
+
+.page .content .right .friends .partyTitle{
+	width: 100%;
+}
+
+.page .content .right .friends .partyTitle h2{
+	float: left;
+}
+
+.page .content .right .friends .partyTitle input{
+	float: left;
+	margin-left: 20px;
+}
+
+.page .content .right .friends .partyTitle .searchFriendView {
+	width: 1px;
+	height: 1px;
+	background-color: transparent;
+	z-index: 1;
+	position: absolute;
+	margin-top: 20px;
+	margin-left: 75px;
 }
 
 .page .content .right .friends .friendsList {

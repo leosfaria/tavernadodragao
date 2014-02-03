@@ -76,7 +76,12 @@
 			</div>
 			<div class="right">
 				<div class="friends">
-					<h2>Party</h2>
+					<div class="partyTitle">
+						<h2>Party</h2>
+						<input id="addFriend" type="button" value="Add Friend">
+						<div id="searchFriendView" class="searchFriendView">
+						</div>
+					</div>
 					<div class="friendsList">
 						<c:forEach var="friend" items="${party}">
 							<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
