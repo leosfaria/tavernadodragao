@@ -296,6 +296,18 @@
 	margin-left: 75px;
 }
 
+.page .content .right .friends .partyTitle .searchFriendView .img{
+	float: left;
+}
+
+.page .content .right .friends .partyTitle .searchFriendView .friendData{
+	float: left;
+}
+
+.page .content .right .friends .partyTitle .searchFriendView .friendSubmitButton{
+	float: left;
+}
+
 .page .content .right .friends .friendsList {
 	width: 100%;
 	height: 85%;

@@ -118,14 +118,51 @@ public class CampaignController extends AbstractController {
 		
 		User userLogged = getLoggedUser(request.getSession());
 		
-		List<User> userList = userDao.findUsersByUsername(request.getParameter("user"), userLogged);
+		Campaign campaign = campaignDao.getCampaignById(Long.parseLong(request.getParameter("campaignId")));
 		
+		ArrayList<Long> friendsNotPlayingCampaignIds = new ArrayList<Long>();
+		
+		for (User friend : userLogged.getFriends()) {
+			boolean playerFound = false;
+			
+			for (User player : campaign.getPlayers()) {
+				if (player.getId() == friend.getId()) {
+					playerFound = true;
+					break;
+				}
+			}
+			
+			if (!playerFound)
+				friendsNotPlayingCampaignIds.add(friend.getId());
+		}
+
+		List<User> userList = userDao.findFriendsByUsernameAndIds(request.getParameter("user"), friendsNotPlayingCampaignIds);
+				
 		for (User user : userList) {
-			response = response + "{userId: '" + user.getId() + "', username: '" + user.getUsername() + "'},";
+			response = response + "{userId: '" + user.getId() + "', username: '" + user.getUsername() + "', campaignId: '" + campaign.getId() + "'},";
 		}
 		
 		response = response + "]";
 		
 		return response;
+	}
+	
+	@RequestMapping("addFriendToCampaign")
+	public String addFriendToCampaign(HttpServletRequest request, Model model) {
+		
+		User userLogged = getLoggedUser(request.getSession());
+		
+		Campaign campaign = campaignDao.getCampaignById(Long.parseLong(request.getParameter("campaignIdAddFriend")));
+		
+		User friend = userDao.findUserById(Long.parseLong(request.getParameter("friendIdAddFriend")));
+		
+		campaign.getPlayers().add(friend);
+		
+		campaignDao.save(campaign);
+
+		model.addAttribute("campaign", campaign);
+		model.addAttribute("party", campaign.getPlayers());
+		
+		return "campaignMaster";
 	}
 }

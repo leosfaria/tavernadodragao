@@ -1,5 +1,6 @@
 package br.com.tavernadodragao.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -58,6 +59,22 @@ public class UserDao extends AbstractDao<User> {
 
 		crit.add(Restrictions.like("username", "%" + username + "%"));
 		crit.add(Restrictions.not(Restrictions.in("id", new Long[] { excludeUser.getId() })));
+		return (List<User>) crit.list();
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
+	public List<User> findFriendsByUsernameAndIds(String username, List<Long> friendsIds) {
+		Criteria crit = session().createCriteria(User.class);
+
+		crit.add(Restrictions.like("username", "%" + username + "%"));
+		
+		if(friendsIds == null || friendsIds.size() == 0)
+			return new ArrayList<User>();
+		
+		for (Long friendId : friendsIds) {
+			crit.add(Restrictions.eq("id", friendId));
+		}
+		
 		return (List<User>) crit.list();
 	}
 	

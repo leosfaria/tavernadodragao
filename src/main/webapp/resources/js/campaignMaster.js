@@ -37,20 +37,20 @@ function generateRandomNumberPlus(dice) {
 	return result;
 }
 
-$(document).click(function() {
- 	if($('#addFriend').attr('type') == "text")
-	{
- 		$('#addFriend').attr('type', 'button');
- 		$('#addFriend').val("Add friend");
- 		
- 		$('#searchFriendView').html("");
- 		$('#searchFriendView').css("background-color", "transparent");
-		$('#searchFriendView').css("width", "1px");
-		$('#searchFriendView').css("height", "1px");
-	}
-});
+//$(document).click(function() {
+// 	if($('#addFriend').attr('type') == "text")
+//	{
+// 		$('#addFriend').attr('type', 'button');
+// 		$('#addFriend').val("Add friend");
+// 		
+// 		$('#searchFriendView').html("");
+// 		$('#searchFriendView').css("background-color", "transparent");
+//		$('#searchFriendView').css("width", "1px");
+//		$('#searchFriendView').css("height", "1px");
+//	}
+//});
 
-$(document).ready(function() {	
+$(document).ready(function() {		
 			$('#addFriend').bind('click', function(event){
 					$('#addFriend').attr('type', 'text');
 					$('#addFriend').val("");
@@ -61,18 +61,36 @@ $(document).ready(function() {
 				if (event.keyCode == 13) {
 					$.ajax({
 						type:'POST',
-						data: {user: $('#addFriend').val()},
+						data: {user: $('#addFriend').val(), campaignId: $('#campaignId').val()},
 						url: 'http://tavernadodragao.com.br:8081/searchFriendCampaign',
 						success: function(response) {
 							var message = eval( "(" + response + ")");
 							var userCount = 0;
-							message.forEach(function (msg) { 
-								$('#searchFriendView').append( msg.username + "<br>");
-								userCount++;
-							});
-							$('#searchFriendView').css("background-color", "rgb(224, 224, 224)");
-							$('#searchFriendView').css("width", $('#addFriend').width().toString());
-							$('#searchFriendView').css("height", userCount * 20);
+							
+							if (message != ""){
+								message.forEach(function (msg) { 
+									$('#searchFriendView').append("<div>" +
+											"<div id=\"searchFriendViewImg\" class=\"img\">" +
+												"<img src=\"../resources/css/images/yourImageDefault.jpg\" height=\"20\" width=\"20\" border=\"1\">" +
+											"</div>" +
+											"<div id=\"searchFriendViewData\" class=\"friendData\">" +
+												"<h3>" + msg.username + "</h3>" +
+											"</div>" +
+											"<div id=\"searchFriendViewButton\" class=\"friendSubmitButton\">" +
+												"<form id=\"addFriendToCampaign\" action=\"addFriendToCampaign\" method=\"post\">" +
+													"<input id=\"addFriendToCampaignButton\" type=\"submit\" value=\"Add\">" +
+													"<input type=\"hidden\" id=\"friendIdAddFriend\" name=\"friendIdAddFriend\" value=\"" + msg.userId + "\" />" +
+													"<input type=\"hidden\" id=\"campaignIdAddFriend\" name=\"campaignIdAddFriend\" value=\"" + msg.campaignId + "\" />" +
+												"</form>" +
+											"</div>" +
+										"</div>");
+									userCount++;
+								});
+								
+								$('#searchFriendView').css("background-color", "rgb(224, 224, 224)");
+								$('#searchFriendView').css("width", 230);
+								$('#searchFriendView').css("height", userCount * 30);
+							}
 						},
 						error:function(request,status,errorThrown){
 						}
