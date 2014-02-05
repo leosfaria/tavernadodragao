@@ -37,20 +37,32 @@ function generateRandomNumberPlus(dice) {
 	return result;
 }
 
-//$(document).click(function() {
-// 	if($('#addFriend').attr('type') == "text")
-//	{
-// 		$('#addFriend').attr('type', 'button');
-// 		$('#addFriend').val("Add friend");
-// 		
-// 		$('#searchFriendView').html("");
-// 		$('#searchFriendView').css("background-color", "transparent");
-//		$('#searchFriendView').css("width", "1px");
-//		$('#searchFriendView').css("height", "1px");
-//	}
-//});
+$(document).click(function() {
+ 	if($('#addFriend').attr('type') == "text")
+	{
+ 		$('#addFriend').attr('type', 'button');
+ 		$('#addFriend').val("Add friend");
+ 		
+ 		$('#searchFriendView').html("");
+ 		$('#searchFriendView').css("background-color", "transparent");
+		$('#searchFriendView').css("width", "1px");
+		$('#searchFriendView').css("height", "1px");
+	}
+});
 
 $(document).ready(function() {		
+			$("#partyTitle").focusout(function(){
+				if (typeof $('#friendIdAddFriend').val() == 'undefined')
+				{
+					$('#addFriend').attr('type', 'button');
+			 		$('#addFriend').val("Add friend");
+			 		
+			 		$('#searchFriendView').html("");
+			 		$('#searchFriendView').css("background-color", "transparent");
+					$('#searchFriendView').css("width", "1px");
+					$('#searchFriendView').css("height", "1px");
+				}
+			});
 			$('#addFriend').bind('click', function(event){
 					$('#addFriend').attr('type', 'text');
 					$('#addFriend').val("");
@@ -69,7 +81,7 @@ $(document).ready(function() {
 							
 							if (message != ""){
 								message.forEach(function (msg) { 
-									$('#searchFriendView').append("<div>" +
+									$('#searchFriendView').append("<div id=\"searchFriendViewResult\">" +
 											"<div id=\"searchFriendViewImg\" class=\"img\">" +
 												"<img src=\"../resources/css/images/yourImageDefault.jpg\" height=\"20\" width=\"20\" border=\"1\">" +
 											"</div>" +
@@ -90,6 +102,10 @@ $(document).ready(function() {
 								$('#searchFriendView').css("background-color", "rgb(224, 224, 224)");
 								$('#searchFriendView').css("width", 230);
 								$('#searchFriendView').css("height", userCount * 30);
+								
+								$("#searchFriendViewResult").click(function(event){
+									event.stopPropagation();
+								});
 							}
 						},
 						error:function(request,status,errorThrown){

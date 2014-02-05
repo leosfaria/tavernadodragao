@@ -76,7 +76,7 @@
 			</div>
 			<div class="right">
 				<div class="friends">
-					<div class="partyTitle">
+					<div id="partyTitle" class="partyTitle">
 						<h2>Party</h2>
 						<input id="addFriend" type="button" value="Add Friend">
 						<div id="searchFriendView" class="searchFriendView">
