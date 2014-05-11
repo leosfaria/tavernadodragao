@@ -90,7 +90,7 @@ $(document).ready(function() {
 					$.ajax({
 						type:'POST',
 						data: {message: $('#message').val(), campaignId: $('#campaignId').val()},
-						url: 'http://tavernadodragao.com.br:8081/chatCampaign',
+						url: 'http://tavernadodragao.com.br:8080/chatCampaign',
 						success: function(response) {
 							var message = eval( "(" + response + ")");
 							$('#chatView').append( message[0].user + ":" + message[0].msg + "<br>");
@@ -107,7 +107,7 @@ $(document).ready(function() {
 				$.ajax({
 					type:'POST',
 					data: {campaignId: $('#campaignId').val()},
-					url: 'http://tavernadodragao.com.br:8081/chatCampaign',
+					url: 'http://tavernadodragao.com.br:8080/chatCampaign',
 					success: function(response) {
 						var message = eval( "(" + response + ")");
 						

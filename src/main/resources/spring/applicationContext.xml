@@ -42,6 +42,11 @@
 		</property>
 	</bean>
 
+  	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <!-- setting maximum upload size -->
+        <property name="maxUploadSize" value="4200000" />
+    </bean>
+    
 	<!-- Configs -->
 	<bean
 		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" />
@@ -51,6 +56,7 @@
 	<bean id="campaignDao" class="br.com.tavernadodragao.dao.CampaignDao" autowire="byType" />
 	<bean id="activityDao" class="br.com.tavernadodragao.dao.ActivityDao" autowire="byType" />
 	<bean id="messageDao" class="br.com.tavernadodragao.dao.MessageDao" autowire="byType" />
+	<bean id="charactersheetDao" class="br.com.tavernadodragao.dao.CharactersheetDao" autowire="byType" />
 	
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">

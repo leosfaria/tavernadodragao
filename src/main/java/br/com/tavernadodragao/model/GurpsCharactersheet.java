@@ -1,8 +1,6 @@
 package br.com.tavernadodragao.model;
 
-import java.util.List;
-
-public class GurpsCharactersheet implements Charactersheet{
+public class GurpsCharactersheet {
 
 	private String characterName;
 	private String playerName;
