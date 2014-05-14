@@ -32,10 +32,7 @@
 				<div class="menu">
 					<ul>
 						<li>
-							<form action="uploadCharacterSheet" method="post" enctype="multipart/form-data">
-								<input type="file" name="file" id="file">
-								<input type="submit" value="Upload Char">
-							</form>
+							<a href="/character">Create Character</a>
 						</li>
 						<br>
 						<li><a href="/campaign">Create Campaign</a></li>

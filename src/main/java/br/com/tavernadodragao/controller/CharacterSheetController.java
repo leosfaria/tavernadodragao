@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import br.com.tavernadodragao.dao.CampaignDao;
 import br.com.tavernadodragao.dao.CharactersheetDao;
+import br.com.tavernadodragao.dao.UserDao;
+import br.com.tavernadodragao.model.Charactersheet;
 import br.com.tavernadodragao.model.User;
 
 @Controller
@@ -24,21 +27,50 @@ public class CharacterSheetController extends AbstractController {
 	
 	@Autowired
 	private CharactersheetDao charactersheetDao;
+	@Autowired
+	private CampaignDao campaignDao;
+	@Autowired
+	private UserDao userDao;
+	
+	@RequestMapping("character")
+	public String character(HttpServletRequest request, Model model) {
+		User user = getUserFromSession(request.getSession());
+		
+		model.addAttribute("existingCampaigns", campaignDao.getCampaigns(user));
+		
+		return "charactersheet";
+	}
 	
 	@RequestMapping(value="uploadCharacterSheet", method=RequestMethod.POST) 
 	public  String upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) throws Exception {
-		User user = getUserFromSession(request.getSession());
+		User user = getLoggedUser(request.getSession());
 		
-		String dirPath = "./src/main/webapp/resources/" + user.getUsername() + "/";
-		File dir = new File(dirPath);
+		String path = "./src/main/webapp/resources/" + user.getUsername() + "/";
+		String name = file.getOriginalFilename();
+		
+		File dir = new File(path);
 		
 		if(!dir.exists())
 			dir.mkdir();
 		
-		File img = new File(dirPath + file.getOriginalFilename());
+		File img = new File(path + name);
 
 		file.transferTo(img);
 		
-		return "main";
+		Charactersheet character = new Charactersheet();
+		
+		character.setName(name);
+		character.setImagePath(path + name);
+		
+		charactersheetDao.save(character);
+		
+		user.getCharactersheets().add(character);
+		
+		userDao.save(user);
+		
+		model.addAttribute("charactersheet", character);
+		model.addAttribute("existingCampaigns", campaignDao.getCampaigns(user));
+		
+		return "charactersheet";
 	}
 }

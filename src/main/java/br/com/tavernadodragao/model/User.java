@@ -64,6 +64,10 @@ public class User {
 	@JoinTable(name="User_MessagePending", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Message_ID")})
 	private List<Message> messagesPendings;
 	
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinTable(name="User_Charactersheet", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Charactersheet_ID")})
+	private List<Charactersheet> charactersheets;
+	
 	private Date timeLogged;
 	
 	public Long getId() {
@@ -143,5 +147,11 @@ public class User {
 	}
 	public void setMessagesPendings(List<Message> messagesPendings) {
 		this.messagesPendings = messagesPendings;
+	}
+	public List<Charactersheet> getCharactersheets() {
+		return charactersheets;
+	}
+	public void setCharactersheets(List<Charactersheet> charactersheets) {
+		this.charactersheets = charactersheets;
 	}
 }
