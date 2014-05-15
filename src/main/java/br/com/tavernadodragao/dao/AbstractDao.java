@@ -49,6 +49,7 @@ public class AbstractDao<T> {
 
 	public void delete(T clazz) {
 		session().delete(session().merge(clazz));
+		session().flush();
 	}
 
 	@SuppressWarnings("rawtypes")

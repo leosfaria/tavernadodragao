@@ -79,6 +79,15 @@ public class UserDao extends AbstractDao<User> {
 	}
 	
 	@Transactional(propagation=Propagation.REQUIRED)
+	public List<User> findUsersByCampaign(Long campaignId) {
+		Criteria crit = session().createCriteria(User.class, "user");
+		crit.createAlias("user.campaigns", "campaign");
+		crit.add(Restrictions.eq("campaign.id", campaignId));
+
+		return (List<User>) crit.list();
+	}
+	
+	@Transactional(propagation=Propagation.REQUIRED)
 	public boolean existsUser(User user) {
 		Criteria crit = session().createCriteria(User.class);
 		crit.add(Restrictions.eq("email", user.getEmail()));

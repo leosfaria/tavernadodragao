@@ -2,7 +2,6 @@ package br.com.tavernadodragao.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -27,7 +26,7 @@ public class Campaign {
 	private Long masterId;
 	private String masterName;
 	
-	@ManyToMany(cascade={CascadeType.ALL})
+	@ManyToMany
 	@JoinTable(name="Campaign_Players", joinColumns={@JoinColumn(name="Campaign_ID")}, inverseJoinColumns={@JoinColumn(name="User_ID")})
 	private List<User> players;
 

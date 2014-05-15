@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.tavernadodragao.dao.CampaignDao;
+import br.com.tavernadodragao.dao.UserDao;
 import br.com.tavernadodragao.error.CampaignError;
 import br.com.tavernadodragao.error.ErrorType;
 import br.com.tavernadodragao.model.Campaign;
@@ -25,6 +26,8 @@ public class CampaignController extends AbstractController {
 	
 	@Autowired
 	private CampaignDao campaignDao;
+	@Autowired
+	private UserDao userDao;
 	
 	@RequestMapping("campaign")
 	public String campaign(HttpServletRequest request, Model model) {
@@ -164,5 +167,23 @@ public class CampaignController extends AbstractController {
 		model.addAttribute("party", campaign.getPlayers());
 		
 		return "campaignMaster";
+	}
+	
+	@RequestMapping("removeCampaign")
+	public String removeCampaign(HttpServletRequest request, Model model) {		
+		//User userLogged = getLoggedUser(request.getSession());
+		Long campaignId = Long.parseLong(request.getParameter("campaignId"));
+		
+		List<User> usersInCampaign = userDao.findUsersByCampaign(campaignId);
+		Campaign campaign = campaignDao.getCampaignById(campaignId);
+		
+		for (User user : usersInCampaign) {
+			user.getCampaigns().remove(campaign);
+			userDao.save(user);
+		}
+		
+		campaignDao.deleteById(campaignId);
+
+		return "redirect:main";
 	}
 }
