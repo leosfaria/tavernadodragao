@@ -169,9 +169,26 @@ public class CampaignController extends AbstractController {
 		return "campaignMaster";
 	}
 	
+	@RequestMapping("removeFriendFromCampaign")
+	public String removeFriendFromCampaign(HttpServletRequest request, Model model) {
+		
+		Campaign campaign = campaignDao.getCampaignById(Long.parseLong(request.getParameter("campaignId")));
+		User friend = userDao.findUserById(Long.parseLong(request.getParameter("friendId")));
+		
+		campaign.getPlayers().remove(friend);
+		campaignDao.save(campaign);
+		
+		friend.getCampaigns().remove(campaign);
+		userDao.save(friend);
+
+		model.addAttribute("campaign", campaign);
+		model.addAttribute("party", campaign.getPlayers());
+		
+		return "campaignMaster";
+	}
+	
 	@RequestMapping("removeCampaign")
 	public String removeCampaign(HttpServletRequest request, Model model) {		
-		//User userLogged = getLoggedUser(request.getSession());
 		Long campaignId = Long.parseLong(request.getParameter("campaignId"));
 		
 		List<User> usersInCampaign = userDao.findUsersByCampaign(campaignId);

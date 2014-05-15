@@ -29,6 +29,9 @@
 						</a>
 					</h3>
 				</div>
+				<div class="campaignTitle">
+					<h3>Campaign: ${campaign.name}</h3>
+				</div>
 				<div class="menuCampaign">
 					<ul>
 						<li><a href="#">Upload Char</a></li>
@@ -86,6 +89,13 @@
 						<c:forEach var="friend" items="${party}">
 							<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
 							<h3><c:out value="${ friend.username }" /></h3>
+							<div>
+								<form id="removeFriendFromCampaign" action="removeFriendFromCampaign" method="post">
+									<input type="hidden" name="friendId" value="${ friend.id }" />
+									<input type="hidden" name="campaignId" value="${ campaign.id }" />
+									<input type="submit" value="Delete" name="removeFriendFromCampaign" />
+								</form>
+							</div>
 						</c:forEach>
 					</div>
 				</div>

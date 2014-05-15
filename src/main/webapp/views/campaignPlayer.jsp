@@ -29,6 +29,9 @@
 						</a>
 					</h3>
 				</div>
+				<div class="campaignTitle">
+					<h3>Campaign: ${campaign.name}</h3>
+				</div>
 				<div class="menuCampaign">
 					<ul>
 						<li><a href="#">Upload Char</a></li>

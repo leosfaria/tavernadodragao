@@ -140,12 +140,6 @@
 							<a href="/enterCampaign?campaignId=${ campaign.id }" >
 								<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1px">
 							</a>
-							<c:if test="${ campaign.masterId == userLogged.id }">
-								<form id="removeCampaign" action="removeCampaign" method="post">
-									<input type="hidden" name="campaignId" value="${ campaign.id }" />
-									<input type="submit" value="Delete" name="removeCampaign" />
-								</form>
-							</c:if>
 							<h3>
 								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
 									<c:choose>
@@ -159,6 +153,14 @@
 									
 								</a>
 							</h3>
+							<c:if test="${ campaign.masterId == userLogged.id }">
+								<div>
+									<form id="removeCampaign" action="removeCampaign" method="post">
+										<input type="hidden" name="campaignId" value="${ campaign.id }" />
+										<input type="submit" value="Delete" name="removeCampaign" />
+									</form>
+								</div>
+							</c:if>
 						</c:forEach>
 					</div>
 				</div>
