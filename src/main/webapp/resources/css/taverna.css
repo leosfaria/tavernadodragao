@@ -299,6 +299,47 @@
 	overflow: auto;
 }
 
+.page .content .middle .editProfile {
+	height: 100%;
+	width: 60%;
+	float: left;
+	margin-left: 150px;
+}
+
+.page .content .middle .editProfile .editProfileLabel {
+	height: 100%;
+	width: 40%;
+	margin-top: 10px;
+	float: left;
+}
+
+.page .content .middle .editProfile .editProfileLabel h3 {
+	margin-top: 8px;
+}
+
+.page .content .middle .editProfile .editProfileText {
+	height: 100%;
+	width: 40%;
+	margin-top: 10px;
+	float: left;
+}
+
+.page .content .middle .editProfile .editProfileText input {
+	margin-top: 5px;
+}
+
+.page .content .middle .editProfile .editError {
+	height: 100%;
+	width: 20%;
+	margin-top: 10px;
+	float: left;
+}
+
+.page .content .middle .editProfile .editError div {
+	width: 400px;
+	height: 28px;
+}
+
 .page .content .right {
 	height: 100%;
 	width: 30%;

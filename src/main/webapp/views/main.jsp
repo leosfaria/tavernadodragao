@@ -32,6 +32,10 @@
 				<div class="menu">
 					<ul>
 						<li>
+							<a href="/editProfile">Edit Profile</a>
+						</li>
+						<br>
+						<li>
 							<a href="/character">Create Character</a>
 						</li>
 						<br>
