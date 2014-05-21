@@ -19,7 +19,7 @@
 						<input type="password" id="passwordLogin" name="password">
 						<input type="submit" id="buttonLogin" value="Log In">
 						<c:if test="${loginError.errorType == 'USER_OR_PASS_INVALID'}" >
-							<label class="error">
+							<label id="loginError" class="error">
 								<c:out value="${loginError.message}" />
 							</label>
 						</c:if>
@@ -64,26 +64,26 @@
 				</div>
 				<div class="signupError">
 					<div>
-						<form:errors path="username" cssStyle="color:red" id="usernameSignup" />
+						<form:errors path="username" cssStyle="color:red" id="usernameSignupError" />
 					</div>
 					<div>
-						<form:errors path="email" cssStyle="color:red" id="emailSignup" />
+						<form:errors path="email" cssStyle="color:red" id="emailSignupError" />
 						<c:if test="${loginError.errorType == 'EMAIL_ALREADY_IN_USE'}">
-							<label class="error">
+							<label class="error" id="emailSignupError">
 								<c:out value="${loginError.message}" />
 							</label>
 						</c:if>
 					</div>
 					<div>
-						<form:errors path="password" cssStyle="color:red" id="passwordSignup" />
+						<form:errors path="password" cssStyle="color:red" id="passwordSignupError" />
 						<c:if test="${loginError.errorType == 'PASS_AND_CONFIRM_DOESNT_MATCH'}">
-							<label class="error">
+							<label class="error" id="passwordSignupError">
 								<c:out value="${loginError.message}" />
 							</label>
 						</c:if>
 					</div>
 					<div>
-						<form:errors path="confirmPassword" cssStyle="color:red" id="confirmPasswordSignup" />
+						<form:errors path="confirmPassword" cssStyle="color:red" id="confirmPasswordSignupError" />
 					</div>
 				</div>
 			</form:form>

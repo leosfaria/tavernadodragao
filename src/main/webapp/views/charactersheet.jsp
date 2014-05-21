@@ -14,14 +14,14 @@
 		<div class="header">
 			<div class="title">
 				<h1>I used to be an adventurer like you but then i took an arrow to the knee...</h1>
-				<a href="logout">Logout</a>
+				<a id="logout" href="logout">Logout</a>
 			</div>
 		</div>
 		<div class="content">
 			<div class="left">
 				<div class="profile">
 					<a href="/main">
-						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+						<img src="${userLogged.avatarImgPath}" height="100" width="100" border="1">
 					</a>
 					<h3>
 						<a href="/main">

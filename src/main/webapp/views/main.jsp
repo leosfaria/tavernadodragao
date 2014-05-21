@@ -14,14 +14,14 @@
 		<div class="header">
 			<div class="title">
 				<h1>I used to be an adventurer like you, then I took an arrow to the knee...</h1>
-				<a href="logout">Logout</a>
+				<a id="logout" href="logout">Logout</a>
 			</div>
 		</div>
 		<div class="content">
 			<div class="left">
 				<div class="profile">
 					<a href="/main">
-						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+						<img src="${userLogged.avatarImgPath}" height="100" width="100" border="1">
 					</a>
 					<h3>
 						<a href="/main">
@@ -55,7 +55,7 @@
 							<c:forEach var="user" items="${userList}">
 								<tr>
 									<td class="img">
-										<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+										<img src="${user.avatarImgPath}" height="50" width="50" border="1">
 									</td>
 									<td class="friendData">
 										<h3>${user.username}</h3>
@@ -68,7 +68,7 @@
 										<c:choose>
 											<c:when test="${ contains }">
 												<form action="unFriend" method="post">
-													<input type="submit" value="Unfriend"/>
+													<input id="unFriendButton" type="submit" value="Unfriend"/>
 													<input type="hidden" name="friend_id" value="${user.id}" />
 												</form>
 											</c:when>
@@ -81,11 +81,11 @@
 												</c:forEach>
 												<c:choose>
 													<c:when test="${ requestPending }">
-														<input type="submit" value="Request Pending" disabled="disabled"/>
+														<input id="friendRequestPending" type="submit" value="Request Pending" disabled="disabled"/>
 													</c:when>
 													<c:otherwise>
 														<form action="addFriend" method="post">
-															<input type="submit" value="Add Friend"/>
+															<input id="addFriendButton" type="submit" value="Add Friend"/>
 															<input type="hidden" name="friend_id" value="${user.id}" />
 														</form>
 													</c:otherwise>
@@ -123,16 +123,16 @@
 					</c:choose>
 					<div class="friendsList">
 						<c:forEach var="friend" items="${friends}">
-							<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+							<img src="${friend.avatarImgPath}" height="50" width="50" border="1">
 							<h3><c:out value="${ friend.username }" /></h3>
 						</c:forEach>
 						<form id="acceptFriend" action="acceptFriend" method="post">
 							<c:forEach var="friendRequest" items="${friendsRequests}">
-								<img src="../resources/css/images/yourImageDefault.jpg" height="50" width="50" border="1">
+								<img src="${friendRequest.avatarImgPath}" height="50" width="50" border="1">
 								<h3><c:out value="${ friendRequest.username }" /></h3>
 								<input type="hidden" name="accept_friend_id" value="${friendRequest.id}" />
-								<input type="submit" value="Add" name="add" />
-								<input type="submit" value="Decline" name="decline" />	
+								<input id="acceptFriendRequest" type="submit" value="Add" name="add" />
+								<input id="declineFriendRequest" type="submit" value="Decline" name="decline" />	
 							</c:forEach>
 						</form>
 					</div>

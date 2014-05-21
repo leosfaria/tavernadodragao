@@ -38,6 +38,8 @@ public class User {
 	@NotBlank(message="Email deve ser um email válido")
 	private String email;
 
+	private String avatarImgPath;
+	
 	@ManyToMany(cascade={CascadeType.ALL})
 	@JoinTable(name="User_Friends", joinColumns={@JoinColumn(name="User_ID")}, inverseJoinColumns={@JoinColumn(name="Friend_ID")})
 	private List<User> friends = new ArrayList<User>();
@@ -69,7 +71,7 @@ public class User {
 	private List<Charactersheet> charactersheets;
 	
 	private Date timeLogged;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -153,5 +155,11 @@ public class User {
 	}
 	public void setCharactersheets(List<Charactersheet> charactersheets) {
 		this.charactersheets = charactersheets;
+	}
+	public String getAvatarImgPath() {
+		return avatarImgPath;
+	}
+	public void setAvatarImgPath(String avatarImgPath) {
+		this.avatarImgPath = avatarImgPath;
 	}
 }

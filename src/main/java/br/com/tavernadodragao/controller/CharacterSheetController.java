@@ -18,6 +18,7 @@ import br.com.tavernadodragao.dao.CharactersheetDao;
 import br.com.tavernadodragao.dao.UserDao;
 import br.com.tavernadodragao.model.Charactersheet;
 import br.com.tavernadodragao.model.User;
+import br.com.tavernadodragao.service.UploadFile;
 
 @Controller
 public class CharacterSheetController extends AbstractController {
@@ -45,17 +46,10 @@ public class CharacterSheetController extends AbstractController {
 	public  String upload(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model) throws Exception {
 		User user = getLoggedUser(request.getSession());
 		
-		String path = "./src/main/webapp/resources/" + user.getUsername() + "/";
+		String path = "./src/main/webapp/resources/" + user.getId() + "/";
 		String name = file.getOriginalFilename();
 		
-		File dir = new File(path);
-		
-		if(!dir.exists())
-			dir.mkdir();
-		
-		File img = new File(path + name);
-
-		file.transferTo(img);
+		UploadFile.uploadFile(file, path);
 		
 		Charactersheet character = new Charactersheet();
 		

@@ -14,14 +14,14 @@
 		<div class="header">
 			<div class="title">
 				<h1>I used to be an adventurer like you, then I took an arrow to the knee...</h1>
-				<a href="logout">Logout</a>
+				<a id="logout" href="logout">Logout</a>
 			</div>
 		</div>
 		<div class="content">
 			<div class="left">
 				<div class="profile">
 					<a href="/main">
-						<img src="../resources/css/images/yourImageDefault.jpg" height="100" width="100" border="1">
+						<img src="${currentUser.avatarImgPath}" height="100" width="100" border="1">
 					</a>
 					<h3>
 						<a href="/main">
@@ -31,9 +31,10 @@
 				</div>
 			</div>
 			<div class="middle">
-				<form id="updateProfile" action="updateProfile" method="post">
+				<form id="updateProfile" action="updateProfile" method="post" enctype="multipart/form-data">
 					<div class="editProfile">
 						<div class="editProfileLabel">
+							<h3>Upload New Photo:</h3>
 							<h3>Username:</h3>
 							<h3>Email:</h3>
 							<h3>Old Password:</h3>
@@ -41,6 +42,7 @@
 							<h3>Confirm New Password:</h3>
 						</div>
 						<div class="editProfileText">
+							<input type="file" name="file" id="file">
 							<input type="text" id="username" name="username" value="${currentUser.username}" >
 							<input type="text" id="email" name="email" value="${currentUser.email}">
 							<input type="password" id="oldPassword" name="oldPassword" value="" >

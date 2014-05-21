@@ -88,6 +88,9 @@ public class LoginController extends AbstractController {
 					{
 						user.setTimeLogged(new Date());
 						
+						if(user.getAvatarImgPath() == null ||  user.getAvatarImgPath().isEmpty())
+							user.setAvatarImgPath("../resources/css/images/yourImageDefault.jpg");
+						
 						userDao.save(user);
 						
 						request.getSession().setAttribute("userLogged", user);

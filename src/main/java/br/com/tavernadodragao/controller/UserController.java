@@ -5,20 +5,29 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import br.com.tavernadodragao.error.EditProfileError;
 import br.com.tavernadodragao.error.ErrorType;
 import br.com.tavernadodragao.error.LoginError;
 import br.com.tavernadodragao.model.User;
+import br.com.tavernadodragao.service.UploadFile;
 
 @Controller
 public class UserController extends AbstractController {
+	
+	@Autowired
+	private CommonsMultipartResolver multipartResolver;
 	
 	@RequestMapping("search")
 	public String search(HttpServletRequest request, Model model) {
@@ -122,20 +131,25 @@ public class UserController extends AbstractController {
 		return "editProfile";
 	}
 	
-	@RequestMapping("updateProfile")
-	public String updateProfile(HttpServletRequest request, Model model, @Valid @ModelAttribute User user, BindingResult result) {
-	
+	@RequestMapping(value="updateProfile", method=RequestMethod.POST)
+	public String updateProfile(@RequestParam("file") MultipartFile file, HttpServletRequest request, Model model, @Valid @ModelAttribute User user, BindingResult result) throws Exception {
 		User userLogged = getLoggedUser(request.getSession());
 		
 		EditProfileError error = verifyErrors(userLogged, user, request);
 		
 		if (error == null)
-		{		
+		{
 			userLogged.setUsername(user.getUsername());
 			userLogged.setEmail(user.getEmail());
 			
 			if(!request.getParameter("newPassword").isEmpty())
 				userLogged.setPassword(request.getParameter("newPassword"));
+			
+			if (file != null) {
+				String imgPath = UploadFile.uploadFile(file, "./src/main/webapp/resources/" + userLogged.getId() + "/avatar/");
+				
+				userLogged.setAvatarImgPath(imgPath);
+			}
 			
 			userDao.save(userLogged);
 		
@@ -163,15 +177,13 @@ public class UserController extends AbstractController {
 			error = new EditProfileError(ErrorType.INVALID_EMAIL, "Email deve ser um email válido");
 		else if (!user.getEmail().equals(logged.getEmail()) && userDao.existsUser(user))
 			error = new EditProfileError(ErrorType.EMAIL_ALREADY_IN_USE, "Email already in use");
-		else if (newPassword != "" && (newPassword.length() < 3 || newPassword.length() > 15))
+		else if (!newPassword.isEmpty() && (newPassword.length() < 3 || newPassword.length() > 15))
 			error = new EditProfileError(ErrorType.INVALID_PASSWORD, "Password deve ter de 3 a 15 caracteres");
-		else if (newPassword != "" && !newPassword.equals(confirmPassword))
+		else if ((!newPassword.isEmpty() || !confirmPassword.isEmpty()) && !newPassword.equals(confirmPassword))
 			error = new EditProfileError(ErrorType.PASS_AND_CONFIRM_DOESNT_MATCH, "Password e Confirm Password doesn't match");
-		else if (confirmPassword != "" && !newPassword.equals(confirmPassword))
-			error = new EditProfileError(ErrorType.PASS_AND_CONFIRM_DOESNT_MATCH, "Password e Confirm Password doesn't match");
-		else if (oldPassword != "" && !logged.getPassword().equals(oldPassword))
+		else if (!oldPassword.isEmpty() && !logged.getPassword().equals(oldPassword))
 			error = new EditProfileError(ErrorType.CURRENT_PASS_DOESNT_MATCH, "Old Password doesn't match your current password");
-		else if (oldPassword == "" && newPassword != "")
+		else if (oldPassword.isEmpty() && !newPassword.isEmpty())
 			error = new EditProfileError(ErrorType.CURRENT_PASS_DOESNT_PASSED, "Old Password need to be passed to change password");
 		
 		return error;

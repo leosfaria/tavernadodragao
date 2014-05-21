@@ -1,2 +1,4 @@
+DELETE FROM User_Requests;
+DELETE FROM User_Friends;
 DELETE FROM User;
 COMMIT;
