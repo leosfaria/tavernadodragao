@@ -32,14 +32,14 @@
 				<div class="menu">
 					<ul>
 						<li>
-							<a href="/editProfile">Edit Profile</a>
+							<a id="editProfileButton" href="/editProfile">Edit Profile</a>
 						</li>
 						<br>
 						<li>
-							<a href="/character">Create Character</a>
+							<a id="createCharButton" href="/character">Create Character</a>
 						</li>
 						<br>
-						<li><a href="/campaign">Create Campaign</a></li>
+						<li><a id="createCampaignButton" href="/campaign">Create Campaign</a></li>
 					</ul>
 				</div>
 			</div>

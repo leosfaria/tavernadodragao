@@ -49,7 +49,7 @@
 							<input type="password" id="newPassword" name="newPassword" value="" >
 							<input type="password" id="confirmPassword" name="confirmPassword" value="" >
 							<div>
-								<input type="submit" value="Save" >
+								<input id="buttonSave" type="submit" value="Save" >
 							</div>
 						</div>
 						<div class="editError">
