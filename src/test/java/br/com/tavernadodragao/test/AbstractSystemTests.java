@@ -48,6 +48,19 @@ public abstract class AbstractSystemTests extends AbstractTransactionalJUnit4Spr
 		browser = new Browser(browserName);
 		browser.open();
 	}
+	
+	public void loginTest(boolean navigateTo) {
+		if(navigateTo)
+			browser.navigateTo(url);
+		
+		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
+		browser.setValue(browser.byId("passwordLogin"), "123");
+		browser.click(browser.byId("buttonLogin"));
+	}
+	
+	public void loginTest() {
+		loginTest(true);
+	}
 
 	@After
 	public void tearDown() {

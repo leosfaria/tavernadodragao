@@ -49,7 +49,7 @@
 							<h3>Campaign Name:</h3>
 							<div class="campaignField">
 								<input style="width: 200px;" type="text" id="name" name="name">
-								<input type="submit" value="Create"/>
+								<input type="submit" id="buttonCreate" value="Create"/>
 								<c:if test="${campaignError.errorType == 'CAMPAIGN_ALREADY_EXISTS'}" >
 									<div class="error">
 										${campaignError.message}
@@ -65,7 +65,7 @@
 							<div class="campaignFriends">
 								<c:forEach var="friend" items="${friends}">
 									<div class="campaignFriend">
-										<input type="checkbox" name="${ friend.username }" />
+										<input type="checkbox" id="${ friend.username }" name="${ friend.username }" />
 										<img src="${ friend.avatarImgPath }" height="50" width="50" border="1">
 										<h3><c:out value="${ friend.username }" /></h3>
 									</div>

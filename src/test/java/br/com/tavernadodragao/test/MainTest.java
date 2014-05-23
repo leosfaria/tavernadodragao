@@ -8,13 +8,10 @@ public class MainTest extends AbstractSystemTests {
 		
 	@Test
 	public void testAddFriend() {
-		executeSqlScript("sql/addFriendTest.sql", false);
+		executeSqlScript("sql/createUser2.sql", false);
 		
 		//Teste da Busca por Amigo
-		browser.navigateTo(url);
-		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
-		browser.setValue(browser.byId("passwordLogin"), "123");
-		browser.click(browser.byId("buttonLogin"));
+		loginTest();
 		browser.setValue(browser.byId("searchInput"), "teste");
 		browser.click(browser.byId("searchLink"));
 		assertTrue(browser.heading3("Teste 2").exists());
@@ -41,9 +38,7 @@ public class MainTest extends AbstractSystemTests {
 		assertTrue(browser.heading3("Teste").exists());
 		
 		browser.click(browser.byId("logout"));
-		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
-		browser.setValue(browser.byId("passwordLogin"), "123");
-		browser.click(browser.byId("buttonLogin"));
+		loginTest(false);
 		assertTrue(browser.paragraph("-   Teste 2 approved your friendship request!").exists());
 		assertTrue(browser.heading3("Teste 2").exists());
 		//Fim: Teste de aprovar Request
@@ -51,12 +46,9 @@ public class MainTest extends AbstractSystemTests {
 	
 	@Test
 	public void testDeclineFriendRequest() {
-		executeSqlScript("sql/declineFriendTest.sql", false);
+		executeSqlScript("sql/createUser2WithFriendRequest.sql", false);
 		
-		browser.navigateTo(url);
-		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
-		browser.setValue(browser.byId("passwordLogin"), "123");
-		browser.click(browser.byId("buttonLogin"));
+		loginTest();
 		browser.click(browser.byId("declineFriendRequest"));
 		assertFalse(browser.heading3("Teste 2").exists());
 		
@@ -71,12 +63,9 @@ public class MainTest extends AbstractSystemTests {
 	
 	@Test
 	public void testUnfriend() {
-		executeSqlScript("sql/unFriendTest.sql", false);
+		executeSqlScript("sql/createUser2andFriendRelationship.sql", false);
 		
-		browser.navigateTo(url);
-		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
-		browser.setValue(browser.byId("passwordLogin"), "123");
-		browser.click(browser.byId("buttonLogin"));
+		loginTest();
 		assertTrue(browser.heading3("Teste 2").exists());
 		browser.setValue(browser.byId("searchInput"), "teste");
 		browser.click(browser.byId("searchLink"));

@@ -145,7 +145,7 @@
 								<img src="../resources/css/images/rpgTable.jpg" height="50" width="50" border="1px">
 							</a>
 							<h3>
-								<a href="/enterCampaign?campaignId=${ campaign.id }"  >
+								<a id="${ campaign.name }" href="/enterCampaign?campaignId=${ campaign.id }"  >
 									<c:choose>
 										<c:when test="${ campaign.masterId == userLogged.id }">
 											${ campaign.name }

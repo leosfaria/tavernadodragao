@@ -54,32 +54,35 @@
 						</div>
 						<div class="editError">
 							<div>
+								
+							</div>
+							<div>
 								<c:if test="${profileError.errorType == 'INVALID_USERNAME'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="usernameError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 							</div>
 							<div>
 								<c:if test="${profileError.errorType == 'INVALID_EMAIL'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="emailError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 								<c:if test="${profileError.errorType == 'EMAIL_ALREADY_IN_USE'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="emailError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 							</div>
 							<div>
 								<c:if test="${profileError.errorType == 'CURRENT_PASS_DOESNT_MATCH'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="currentPasswordError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 								<c:if test="${profileError.errorType == 'CURRENT_PASS_DOESNT_PASSED'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="currentPasswordError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 							</div>
 							<div>
 								<c:if test="${profileError.errorType == 'INVALID_PASSWORD'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="passwordError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 								<c:if test="${profileError.errorType == 'PASS_AND_CONFIRM_DOESNT_MATCH'}">
-									<label class="error"><c:out value="${profileError.message}" /></label>
+									<label id="passwordError" class="error"><c:out value="${profileError.message}" /></label>
 								</c:if>
 							</div>
 						</div>

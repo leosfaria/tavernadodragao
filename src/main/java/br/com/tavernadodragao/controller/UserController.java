@@ -32,7 +32,7 @@ public class UserController extends AbstractController {
 	@RequestMapping("search")
 	public String search(HttpServletRequest request, Model model) {
 		
-		User user = getUserFromSession(request.getSession());
+		User user = getLoggedUser(request.getSession());
 		
 		List<User> userList = userDao.findUsersByUsername(request.getParameter("searchInput"), user);
 		
@@ -42,8 +42,13 @@ public class UserController extends AbstractController {
 		friends = userDao.find(user.getId()).getFriends();
 	
 		model.addAttribute("friends", friends);
-		
 		model.addAttribute("activities", getActivitiesFromUser(user));
+		model.addAttribute("campaigns", getCampaignsFromUser(user));
+		
+		if(user.getFriendsRequests().size() > 0) {
+			model.addAttribute("friendsRequestsCount", user.getFriendsRequests().size());
+			model.addAttribute("friendsRequests", user.getFriendsRequests());
+		}
 		
 		return "main";
 	}
@@ -145,7 +150,7 @@ public class UserController extends AbstractController {
 			if(!request.getParameter("newPassword").isEmpty())
 				userLogged.setPassword(request.getParameter("newPassword"));
 			
-			if (file != null) {
+			if (file != null && !file.isEmpty()) {
 				String imgPath = UploadFile.uploadFile(file, "./src/main/webapp/resources/" + userLogged.getId() + "/avatar/");
 				
 				userLogged.setAvatarImgPath(imgPath);
@@ -172,13 +177,13 @@ public class UserController extends AbstractController {
 		String confirmPassword = request.getParameter("confirmPassword");
 		
 		if (user.getUsername() == null || (!user.getUsername().equals(logged.getUsername()) && (user.getUsername().length() < 3 || user.getUsername().length() > 30)))
-			error = new EditProfileError(ErrorType.INVALID_USERNAME, "Username deve ter de 3 caracteres a 30");
+			error = new EditProfileError(ErrorType.INVALID_USERNAME, "Username must have 3 to 30 characters");
 		else if (user.getEmail() == null || (!user.getEmail().equals(logged.getEmail()) && user.getEmail().length() == 0))
-			error = new EditProfileError(ErrorType.INVALID_EMAIL, "Email deve ser um email válido");
+			error = new EditProfileError(ErrorType.INVALID_EMAIL, "Email must be a valid email account");
 		else if (!user.getEmail().equals(logged.getEmail()) && userDao.existsUser(user))
 			error = new EditProfileError(ErrorType.EMAIL_ALREADY_IN_USE, "Email already in use");
 		else if (!newPassword.isEmpty() && (newPassword.length() < 3 || newPassword.length() > 15))
-			error = new EditProfileError(ErrorType.INVALID_PASSWORD, "Password deve ter de 3 a 15 caracteres");
+			error = new EditProfileError(ErrorType.INVALID_PASSWORD, "Password must have 3 to 15 characters");
 		else if ((!newPassword.isEmpty() || !confirmPassword.isEmpty()) && !newPassword.equals(confirmPassword))
 			error = new EditProfileError(ErrorType.PASS_AND_CONFIRM_DOESNT_MATCH, "Password e Confirm Password doesn't match");
 		else if (!oldPassword.isEmpty() && !logged.getPassword().equals(oldPassword))

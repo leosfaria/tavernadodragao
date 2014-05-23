@@ -26,28 +26,28 @@ public class SignUpTest extends AbstractSystemTests {
 		browser.setValue(browser.byId("passwordSignup"), "123");
 		browser.setValue(browser.byId("confirmPasswordSignup"), "123");
 		browser.click(browser.byId("buttonSignup"));
-		assertTrue(browser.containsText(browser.byId("usernameSignupError"), "Username deve ter de 3 caracteres a 30"));
+		assertTrue(browser.containsText(browser.byId("usernameSignupError"), "Username must have 3 to 30 characters"));
 		//Teste de Email vazio
 		browser.navigateTo(url);
 		browser.setValue(browser.byId("usernameSignup"), "Teste Signup Invalido");
 		browser.setValue(browser.byId("passwordSignup"), "123");
 		browser.setValue(browser.byId("confirmPasswordSignup"), "123");
 		browser.click(browser.byId("buttonSignup"));
-		assertTrue(browser.containsText(browser.byId("emailSignupError"), "Email deve ser um email válido"));
+		assertTrue(browser.containsText(browser.byId("emailSignupError"), "Email must be a valid email account"));
 		//Teste de Password vazio
 		browser.navigateTo(url);
 		browser.setValue(browser.byId("usernameSignup"), "Teste Signup Invalido");
 		browser.setValue(browser.byId("emailSignup"), "testeSignupInvalido@teste.com");
 		browser.setValue(browser.byId("confirmPasswordSignup"), "123");
 		browser.click(browser.byId("buttonSignup"));
-		assertTrue(browser.containsText(browser.byId("passwordSignupError"), "Password deve ter de 3 a 15 caracteres"));
+		assertTrue(browser.containsText(browser.byId("passwordSignupError"), "Password must have 3 to 15 characters"));
 		//Teste de Confirm Password vazio
 		browser.navigateTo(url);
 		browser.setValue(browser.byId("usernameSignup"), "Teste Signup Invalido");
 		browser.setValue(browser.byId("emailSignup"), "testeSignupInvalido@teste.com");
 		browser.setValue(browser.byId("passwordSignup"), "123");
 		browser.click(browser.byId("buttonSignup"));
-		assertTrue(browser.containsText(browser.byId("confirmPasswordSignupError"), "Confirm Password deve ter de 3 a 15 caracteres"));
+		assertTrue(browser.containsText(browser.byId("confirmPasswordSignupError"), "Confirm Password must have 3 to 15 characters"));
 		//Teste de Email já cadastrado
 		browser.navigateTo(url);
 		browser.setValue(browser.byId("usernameSignup"), "Teste Signup Email Cadastrado");

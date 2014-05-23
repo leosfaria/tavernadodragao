@@ -1,4 +1,13 @@
-DELETE FROM User_Requests;
+DELETE FROM Campaign_Players;
+DELETE FROM User_Campaign;
+DELETE FROM User_Charactersheet;
 DELETE FROM User_Friends;
+DELETE FROM User_Messagepending;
+DELETE FROM User_Messagereceived;
+DELETE FROM User_Requests;
 DELETE FROM User;
+DELETE FROM Message;
+DELETE FROM Charactersheet;
+DELETE FROM Campaign;
+DELETE FROM Activity;
 COMMIT;

@@ -8,10 +8,7 @@ public class LoginTest extends AbstractSystemTests {
 		
 	@Test
 	public void testLogin() {
-		browser.navigateTo(url);
-		browser.setValue(browser.byId("emailLogin"), "teste@teste.com");
-		browser.setValue(browser.byId("passwordLogin"), "123");
-		browser.click(browser.byId("buttonLogin"));
+		loginTest();
 		assertTrue(browser.heading1("I used to be an adventurer like you, then I took an arrow to the knee...").exists());
 	}
 	

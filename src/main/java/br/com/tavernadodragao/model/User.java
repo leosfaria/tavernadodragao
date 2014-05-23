@@ -23,19 +23,19 @@ public class User {
 	@GeneratedValue
 	private Long id;
 
-	@NotBlank(message="Username deve ter de 3 caracteres a 30")
-	@Size(min=3, max=30, message="Username deve ter de 3 caracteres a 30")
+	@NotBlank(message="Username must have 3 to 30 characters")
+	@Size(min=3, max=30, message="Username must have 3 to 30 characters")
 	private String username;
 	
-	@NotBlank(message="Password deve ter de 3 a 15 caracteres")
-	@Size(min=3,max=15, message="Password deve ter de 3 a 15 caracteres")
+	@NotBlank(message="Password must have 3 to 15 characters")
+	@Size(min=3,max=15, message="Password must have 3 to 15 characters")
 	private String password;
 	
-	@NotBlank(message="Confirm Password deve ter de 3 a 15 caracteres")
-	@Size(min=3,max=15, message="Confirm Password deve ter de 3 a 15 caracteres")
+	@NotBlank(message="Confirm Password must have 3 to 15 characters")
+	@Size(min=3,max=15, message="Confirm Password must have 3 to 15 characters")
 	private String confirmPassword;
 	
-	@NotBlank(message="Email deve ser um email válido")
+	@NotBlank(message="Email must be a valid email account")
 	private String email;
 
 	private String avatarImgPath;
